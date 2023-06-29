@@ -1,0 +1,149 @@
+nav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 15px 40px 15px;
+  gap: 30px;
+  background-color: white;
+  width: 100%;
+}
+
+.mobile_device_icon {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  cursor: pointer;
+  order: 1;
+}
+.big_screen_icons {
+  position: absolute;
+  top: 22px;
+  right: 80px;
+  width: fit-content;
+  white-space: nowrap;
+  display: flex;
+  gap: 30px;
+}
+
+.drop_down {
+  position: fixed;
+  top: 50px;
+  width: 400px;
+  height: fit-content;
+  padding: 30px 10px;
+  padding-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  background-color: rgb(35, 35, 35);
+  z-index: 10;
+}
+.drop_down ul {
+  font-size: 0.8rem;
+  background-color: rgb(41, 41, 41);
+  color: rgb(171, 171, 171);
+}
+.drop_down ul li {
+  border-bottom: 1px solid rgb(81, 81, 81);
+}
+.drop_down ul li:last-child {
+  border-bottom: none;
+}
+.active {
+  right: 5px;
+  visibility: visible;
+  transition: 0.8s ease-in-out;
+  z-index: 10;
+}
+.inactive {
+  right: -400px;
+  visibility: hidden;
+  transition: 0.8s ease-in-out;
+}
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.mobile_buttons {
+  visibility: hidden;
+  opacity: 0;
+}
+.mobile_sidebar {
+  visibility: hidden;
+}
+.disktop_sidebar {
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  position: absolute;
+  padding: 50px 10px;
+  top: 0;
+  left: 0;
+}
+
+.button_active {
+  background-color: rgb(229, 229, 229);
+  transition: 0.5s ease-in-out;
+}
+.button_inactive {
+  background-color: white;
+  transition: 0.5s ease-in-out;
+}
+
+@media screen and (max-width: 654px) {
+  .big_screen_icons {
+    visibility: hidden;
+  }
+  .drop_down {
+    width: 100%;
+    height: 100vh;
+    padding: 30px 10px;
+    border-radius: 0;
+    z-index: 10;
+  }
+
+  .active {
+    top: 0;
+    left: 0;
+    visibility: visible;
+    transition: 0.8s ease-in-out;
+  }
+  .inactive {
+    top: 0;
+    left: 100%;
+    visibility: hidden;
+    transition: 0.8s ease-in-out;
+  }
+
+  .mobile_sidebar {
+    visibility: visible;
+    padding: 15px 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .mobile_buttons {
+    visibility: visible;
+    opacity: 1;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    padding: 10px 10px;
+    font-size: 0.8rem;
+    background-color: rgb(255, 255, 255);
+  }
+  .disktop_sidebar {
+    visibility: hidden;
+  }
+}
