@@ -19,7 +19,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="flex min-h-screen flex-col items-center pt-16 px-2 relative">
+    <main className="flex min-h-screen flex-col items-center pt-32 px-2 relative">
       Hello world
       <Conversations query={query} response={response} />
       <Search setQuery={setQuery} setResponse={setResponse} />

@@ -52,6 +52,7 @@ main {
 }
 @media screen and (max-width: 654px) {
   main {
+    padding-top: 10%;
     margin-left: 0;
     margin-right: 0;
   }

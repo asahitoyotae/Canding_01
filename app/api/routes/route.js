@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const completion = async (messages) => {
   const url = "https://api.openai.com/v1/chat/completions";
-  const key = "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";
+  const key = process.env.SOME_KEY;
   const header = {
     Authorization: `Bearer ${key}`,
     "Content-Type": "application/json",

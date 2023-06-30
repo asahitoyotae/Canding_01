@@ -5,15 +5,15 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 15px 15px 40px 15px;
+  padding: 10% 15px 40px 15px;
   gap: 30px;
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   width: 100%;
 }
 
 .mobile_device_icon {
   position: absolute;
-  top: 15px;
+  top: 40px;
   right: 15px;
   cursor: pointer;
   order: 1;
@@ -124,7 +124,7 @@ nav {
 
   .mobile_sidebar {
     visibility: visible;
-    padding: 15px 15px;
+    padding: 40px 15px;
     display: flex;
     justify-content: center;
     align-items: center;
