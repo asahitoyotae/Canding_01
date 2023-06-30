@@ -1,17 +1,19 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import chatStore from "../store/conversation/store";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const Recent = ({ active, setActive }) => {
   const {
+    animate,
     allThreads,
     setCurrentThreadId,
     setAllThreads,
     currentThreadId,
   } = chatStore();
+  const [deleted, setDeleted] = useState(null);
 
   const deleteAllItem = () => {
     setAllThreads([]);
@@ -23,16 +25,16 @@ const Recent = ({ active, setActive }) => {
   };
 
   const deleteItem = (id) => {
-    const all = [...allThreads];
-    const filtered = all.filter((e) => e.thread_id != id);
-    setAllThreads(filtered);
-    if (id == currentThreadId) {
-      setCurrentThreadId(null);
-      localStorage.removeItem("currentThreadId");
-    }
     setTimeout(() => {
+      const all = [...allThreads];
+      const filtered = all.filter((e) => e.thread_id != id);
+      setAllThreads(filtered);
+      if (id == currentThreadId) {
+        setCurrentThreadId(null);
+        localStorage.removeItem("currentThreadId");
+      }
       localStorage.setItem("allThreads", JSON.stringify(filtered));
-    }, 0);
+    }, 500);
   };
 
   return (
@@ -50,28 +52,38 @@ const Recent = ({ active, setActive }) => {
           return (
             <div
               onClick={() => {
+                if (animate) return;
                 setActive(false);
                 setCurrentThreadId(e.thread_id);
                 localStorage.setItem("currentThreadId", e.thread_id);
               }}
               key={index}
-              className="history_item relative "
+              className={`history_item relative ${
+                deleted == e.thread_id ? "delete_animation" : ""
+              }`}
+              style={{ top: `${50 + 75 * index}px` }}
             >
               <p>{Date(e.thread_id)}</p>
               <p>{e.title}</p>
-              <button
+              <div
                 onClick={(event) => {
+                  event.preventDefault();
                   event.stopPropagation();
                   deleteItem(e.thread_id);
+                  setDeleted(e.thread_id);
                 }}
                 className="trash_item"
               >
                 <FontAwesomeIcon icon={faTrash} />
-              </button>
+              </div>
             </div>
           );
         })
       )}
+      <div
+        className="spacer"
+        style={{ top: `${50 + 75 * allThreads.length}px` }}
+      ></div>
       {allThreads.length > 0 && (
         <div
           className={`delete_container ${

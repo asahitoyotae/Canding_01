@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
@@ -13,8 +15,12 @@ import {
   faStar,
   faVolumeHigh,
 } from "@fortawesome/free-solid-svg-icons";
+import "./choices.css";
+import chatStore from "../store/conversation/store";
 
 const Settings = ({ active, setActive }) => {
+  const { setGptVersion, gptVersion, setLanguage, language } = chatStore();
+  const [choice, setChoice] = useState("");
   return (
     <div className={`drop_down z-10 ${active ? "active" : "inactive"}`}>
       <div className="flex items-center justify-center mb-6">
@@ -28,7 +34,10 @@ const Settings = ({ active, setActive }) => {
       </div>
       <p className="text-gray-200 ml-2 mb-1">Settings</p>
       <ul className="flex justify-center flex-col items-center w-full rounded-xl mb-3">
-        <li className="flex justify-between w-full p-2 ">
+        <li
+          onClick={() => setChoice("gptVersion")}
+          className="flex justify-between w-full p-2 relative"
+        >
           <div className="flex gap-2 items-center justify center ml-2">
             <FontAwesomeIcon
               icon={faBrain}
@@ -37,7 +46,7 @@ const Settings = ({ active, setActive }) => {
             <span>GPT Version</span>
           </div>{" "}
           <div>
-            gpt-3.5{" "}
+            {gptVersion}
             <span className="ml-3 text-lg">
               <FontAwesomeIcon
                 icon={faChevronRight}
@@ -45,8 +54,39 @@ const Settings = ({ active, setActive }) => {
               />
             </span>
           </div>
+          <div
+            className={`choice ${
+              choice === "gptVersion" ? "choices_active" : "choices_inactive"
+            }`}
+          >
+            <div
+              onClick={(e) => {
+                e.stopPropagation();
+                setGptVersion("gpt-3.5-turbo");
+                setTimeout(() => {
+                  setChoice("");
+                }, 0);
+              }}
+            >
+              GPT-3.5-Turbo
+            </div>
+            <div
+              onClick={(e) => {
+                e.stopPropagation();
+                setGptVersion("gpt-4");
+                setTimeout(() => {
+                  setChoice("");
+                }, 0);
+              }}
+            >
+              GPT-4
+            </div>
+          </div>
         </li>
-        <li className="flex justify-between w-full p-2 ">
+        <li
+          onClick={() => setChoice("language")}
+          className="flex justify-between w-full p-2 relative"
+        >
           <div className="flex gap-2 items-center justify center ml-2">
             <FontAwesomeIcon
               icon={faGlobe}
@@ -55,13 +95,30 @@ const Settings = ({ active, setActive }) => {
             <span>Language</span>
           </div>{" "}
           <div>
-            English{" "}
+            {language}
             <span className="ml-3 text-lg">
               <FontAwesomeIcon
                 icon={faChevronRight}
                 style={{ width: "14px", height: "14px" }}
               />
             </span>
+          </div>
+          <div
+            className={`choice ${
+              choice === "language" ? "choices_active" : "choices_inactive"
+            }`}
+          >
+            <div
+              onClick={(e) => {
+                e.stopPropagation();
+                setLanguage("English");
+                setTimeout(() => {
+                  setChoice("");
+                }, 0);
+              }}
+            >
+              English
+            </div>
           </div>
         </li>
         <li className="flex justify-between w-full p-2 ">

@@ -4,6 +4,14 @@ const chatStore = create((set, get) => ({
   allThreads: [],
   currentThreadId: null,
   animate: false,
+  gptVersion: "gpt-3.5-turbo",
+  language: "English",
+  setLanguage: (lang) => {
+    set({ language: lang });
+  },
+  setGptVersion: (version) => {
+    set({ gptVersion: version });
+  },
   setAnimate: (bool) => {
     set({ animate: bool });
   },

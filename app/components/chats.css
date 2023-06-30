@@ -97,15 +97,29 @@
   height: calc(100vh - 45px);
   background-color: rgb(35, 35, 35);
   padding: 20px 10px;
+  padding-top: 15%;
   padding-bottom: 80px;
   overflow-y: auto;
+  overflow-x: auto;
 }
 .history_item {
-  margin: 10px 0;
+  position: absolute;
+  left: 10px;
   padding: 10px 20px;
   border-radius: 15px;
-  background-color: rgb(41, 41, 41);
+  background-color: rgb(46, 46, 46);
   color: white;
+  width: 94%;
+  height: 70px;
+}
+.spacer {
+  position: absolute;
+  left: 10px;
+  padding: 10px 20px;
+  border-radius: 15px;
+  background-color: rgb(35, 35, 35);
+  width: 94%;
+  height: 90px;
 }
 .history_item:active {
   background-color: rgb(54, 54, 54);
@@ -149,4 +163,8 @@
 }
 .delete_all:active {
   background-color: rgb(54, 54, 54);
+}
+.delete_animation {
+  left: 100%;
+  transition: 0.5s ease-in;
 }

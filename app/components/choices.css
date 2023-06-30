@@ -1,0 +1,26 @@
+.choice {
+  position: absolute;
+  top: 90%;
+  background-color: rgb(49, 49, 49);
+  width: 60%;
+  padding: 10px 10px;
+  border-radius: 10px;
+  z-index: 12;
+}
+.choice > div {
+  padding: 4px;
+  border-bottom: 1px solid rgb(111, 111, 111, 0.8);
+}
+.choice > div:last-child {
+  border-bottom: none;
+}
+.choices_active {
+  left: 40%;
+  visibility: visible;
+  transition: 0.5s ease-in-out;
+}
+.choices_inactive {
+  left: 110%;
+  visibility: hidden;
+  transition: 0.5s ease-in-out;
+}

@@ -7,7 +7,7 @@ import "./chats.css";
 import "./thinking.css";
 import chatStore from "../store/conversation/store";
 
-const Conversations = ({ query, response }) => {
+const Conversations = ({ query, response, setQuery, setResponse }) => {
   const {
     allThreads,
     currentThreadId,
@@ -22,7 +22,6 @@ const Conversations = ({ query, response }) => {
   let [dots, setDots] = useState(".");
   const [thinking, setThinking] = useState(false);
   const veiwref = useRef(null);
-
   useEffect(() => {
     if (!currentThreadId) {
       setConversation([]);
@@ -55,12 +54,13 @@ const Conversations = ({ query, response }) => {
       setAllThreads(threads);
       setCurrentThreadId(newChat.thread_id);
       setAnimate(true);
+      localStorage.setItem("allThreads", JSON.stringify(threads));
+      localStorage.setItem("currentThreadId", newChat.thread_id);
+      setThinking(true);
+      setConversation(newChat.conv);
       setTimeout(() => {
-        localStorage.setItem("allThreads", JSON.stringify(threads));
-        localStorage.setItem("currentThreadId", newChat.thread_id);
-        setThinking(true);
-        setConversation(newChat.conv);
-      }, 0);
+        setQuery({});
+      }, 10);
     } else {
       const index = threads.findIndex(
         (e) => e.thread_id == `${currentThreadId}`
@@ -70,44 +70,45 @@ const Conversations = ({ query, response }) => {
       threads.unshift(currentChat);
       setAllThreads(threads);
       setAnimate(true);
+      localStorage.setItem("allThreads", JSON.stringify(threads));
+      setConversation(currentChat.conv);
+      setThinking(true);
       setTimeout(() => {
-        localStorage.setItem("allThreads", JSON.stringify(threads));
-        setConversation(currentChat.conv);
-        setThinking(true);
-      }, 0);
+        setQuery({});
+      }, 10);
     }
   }, [query.content]);
 
   useEffect(() => {
-    if (query.content && response.content) {
-      setAnimating(true);
+    if (!response.content) return;
 
-      let textContent = "";
-      const text = response.content;
+    setAnimating(true);
 
-      text.split("```").forEach((e, i) => {
-        if (i % 2 == 0) {
-          let insideText = "";
-          e.trim()
-            .split("`")
-            .forEach((r, t) => {
-              if (t % 2 == 0) {
-                insideText += `<span>${r}</span>`;
-              } else {
-                insideText += `<span class="px-1 bg-gray-600 text-white rounded-md mx-1">${r}</span>`;
-              }
-            });
-          textContent += `<pre class="custom_pre font-sans" ><p>${insideText}</p></pre>`;
-        } else {
-          textContent +=
-            "<pre class='px-2 py-1 rounded-md bg-gray-600 text-white overflow-x-auto my-1'><code>" +
-            `${e.trim()}` +
-            "</code></pre>";
-        }
-      });
-      setContent(textContent);
-      setThinking(false);
-    }
+    let textContent = "";
+    const text = response.content;
+
+    text.split("```").forEach((e, i) => {
+      if (i % 2 == 0) {
+        let insideText = "";
+        e.trim()
+          .split("`")
+          .forEach((r, t) => {
+            if (t % 2 == 0) {
+              insideText += `<span>${r}</span>`;
+            } else {
+              insideText += `<span class="px-1 bg-gray-600 text-white rounded-md mx-1">${r}</span>`;
+            }
+          });
+        textContent += `<pre class="custom_pre font-sans" ><p>${insideText}</p></pre>`;
+      } else {
+        textContent +=
+          "<pre class='px-2 py-1 rounded-md bg-gray-600 text-white overflow-x-auto my-1'><code>" +
+          `${e.trim()}` +
+          "</code></pre>";
+      }
+    });
+    setContent(textContent);
+    setThinking(false);
   }, [response.content]);
 
   useEffect(() => {
@@ -228,6 +229,7 @@ const Conversations = ({ query, response }) => {
                       );
                       setAllThreads(threads);
                       setConversation(currentChat.conv);
+                      setResponse({});
                     }, 0);
                   })
                   .start();

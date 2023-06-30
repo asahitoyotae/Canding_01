@@ -40,7 +40,7 @@ const Sidebar = () => {
           }}
           className={`flex items-center justify-center px-3 py-1 rounded-lg ${
             !currentThreadId && !recent ? "button_active" : "button_inactive"
-          }`}
+          } ${animate ? "bg-red-100" : ""}`}
         >
           <FontAwesomeIcon
             icon={faMessage}

@@ -8,7 +8,7 @@ import { completion } from "../api/routes/route";
 import chatStore from "../store/conversation/store";
 
 const Search = ({ setResponse, setQuery }) => {
-  const { allThreads, currentThreadId, animate } = chatStore();
+  const { allThreads, currentThreadId, animate, gptVersion } = chatStore();
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -42,7 +42,7 @@ const Search = ({ setResponse, setQuery }) => {
       role: "system",
       content: "be polite always.",
     });
-    const res = await completion(message);
+    const res = await completion(message, gptVersion);
     if (res) {
       const reply = res.choices[0].message;
       setResponse(reply);

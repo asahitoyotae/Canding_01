@@ -1,6 +1,7 @@
+import chatStore from "@/app/store/conversation/store";
 import axios from "axios";
 
-export const completion = async (messages) => {
+export const completion = async (messages, version) => {
   const url = "https://api.openai.com/v1/chat/completions";
   const key = process.env.SOME_KEY;
   const header = {
@@ -8,15 +9,24 @@ export const completion = async (messages) => {
     "Content-Type": "application/json",
   };
   const body = {
-    model: "gpt-3.5-turbo",
+    model: version,
     messages: messages,
     temperature: 0.7,
-    max_tokens: 1000,
+    max_tokens: 500,
   };
 
   try {
-    const response = await axios.post(url, body, { headers: header });
-    return response.data;
+    const response = axios.post(url, body, { headers: header });
+
+    const timeoutResponse = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        reject(new Error("Request Time Out!"));
+      }, 20000);
+    });
+
+    const race = await Promise.race([response, timeoutResponse]);
+    console.log(race.data);
+    return race.data;
   } catch (error) {
     console.log(error);
     return null;
