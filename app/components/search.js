@@ -2,10 +2,9 @@
 
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState } from "react";
 import "./chats.css";
-import { completion } from "../api/routes/route";
 import chatStore from "../store/conversation/store";
+import axios from "axios";
 
 const Search = ({ setResponse, setQuery }) => {
   const { allThreads, currentThreadId, animate, gptVersion } = chatStore();
@@ -28,23 +27,30 @@ const Search = ({ setResponse, setQuery }) => {
     if (currentThreadId == null) {
       message.push(userCurrentQuery);
     } else {
-      const currentThread = allThreads.find(
-        (e) => e.thread_id == currentThreadId
-      );
+      const currentThread = allThreads.find((e) => {
+        return e.thread_id == currentThreadId;
+      });
       for (let i = currentThread.conv.length - 1; i >= 0; i--) {
         if (message.length < 9) {
           message.unshift(currentThread.conv[i]);
         }
-        message.push(userCurrentQuery);
       }
+      message.push(userCurrentQuery);
     }
     message.unshift({
       role: "system",
       content: "be polite always.",
     });
-    const res = await completion(message, gptVersion);
-    if (res) {
-      const reply = res.choices[0].message;
+    const url = "/api/completion";
+    const body = {
+      messages: message,
+      version: gptVersion,
+    };
+    console.log(body, "body");
+    const res = await axios.post(url, body, { headers: {} });
+    console.log(res);
+    if (res.data.choices) {
+      const reply = res.data.choices[0].message;
       setResponse(reply);
     } else {
       setResponse({ role: "assistant", content: "An Error Occured" });
