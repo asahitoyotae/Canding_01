@@ -20,13 +20,13 @@ export async function POST(req, res) {
         max_tokens: 500,
       };
 
-      const response = axios.post(url, body, { headers: header });
-
       const timeoutResponse = new Promise((resolve, reject) => {
         setTimeout(() => {
           reject(new Error("Request Time Out!"));
         }, 20000);
       });
+
+      const response = await axios.post(url, body, { headers: header });
 
       const race = await Promise.race([response, timeoutResponse]);
       return new NextResponse(JSON.stringify(race.data));
