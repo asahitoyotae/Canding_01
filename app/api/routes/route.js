@@ -1,3 +1,5 @@
+"use server";
+
 import chatStore from "@/app/store/conversation/store";
 import axios from "axios";
 

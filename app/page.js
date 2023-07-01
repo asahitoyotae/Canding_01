@@ -10,6 +10,7 @@ export default function Home() {
   const [response, setResponse] = useState({});
   const [query, setQuery] = useState({});
   const { setAllThreads, setCurrentThreadId } = chatStore();
+  console.log(process.env.SOME_KEY);
 
   useEffect(() => {
     const storage = JSON.parse(localStorage.getItem("allThreads"));
