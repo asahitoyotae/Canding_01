@@ -4,22 +4,22 @@ import { NextResponse } from "next/server";
 
 export async function POST(req, res) {
   if (req.method === "POST") {
-    const url = "https://api.openai.com/v1/chat/completions";
-    const key = process.env.SOME_KEY;
-    const data = await req.json();
-    console.log("data", data, "key", key);
-    const header = {
-      Authorization: `Bearer ${key}`,
-      "Content-Type": "application/json",
-    };
-    const body = {
-      model: data.version,
-      messages: data.messages,
-      temperature: 0.7,
-      max_tokens: 500,
-    };
-
     try {
+      const url = "https://api.openai.com/v1/chat/completions";
+      const key = process.env.SOME_KEY;
+      const data = await req.json();
+      console.log("data", data, "key", key);
+      const header = {
+        Authorization: `Bearer ${key}`,
+        "Content-Type": "application/json",
+      };
+      const body = {
+        model: data.version,
+        messages: data.messages,
+        temperature: 0.7,
+        max_tokens: 500,
+      };
+
       const response = axios.post(url, body, { headers: header });
 
       const timeoutResponse = new Promise((resolve, reject) => {

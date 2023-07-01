@@ -46,7 +46,6 @@ const Search = ({ setResponse, setQuery }) => {
       messages: message,
       version: gptVersion,
     };
-    console.log(body, "body");
     try {
       const res = await axios.post(url, body, { headers: {} });
       console.log("inside search res", res);
@@ -58,7 +57,7 @@ const Search = ({ setResponse, setQuery }) => {
         setResponse({ role: "assistant", content: "An Error Occured" });
       }
     } catch (error) {
-      console.log(error > "the error itself");
+      console.log(error, "the error itself");
       setResponse({ role: "assistant", content: "An Error Occured" });
     }
   };
