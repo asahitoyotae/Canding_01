@@ -47,12 +47,18 @@ const Search = ({ setResponse, setQuery }) => {
       version: gptVersion,
     };
     console.log(body, "body");
-    const res = await axios.post(url, body, { headers: {} });
-    console.log(res);
-    if (res.data.choices) {
-      const reply = res.data.choices[0].message;
-      setResponse(reply);
-    } else {
+    try {
+      const res = await axios.post(url, body, { headers: {} });
+      console.log("inside search res", res);
+      if (res.data.choices) {
+        const reply = res.data.choices[0].message;
+        setResponse(reply);
+      } else {
+        console.log("error in the frontend", res.data);
+        setResponse({ role: "assistant", content: "An Error Occured" });
+      }
+    } catch (error) {
+      console.log(error > "the error itself");
       setResponse({ role: "assistant", content: "An Error Occured" });
     }
   };
