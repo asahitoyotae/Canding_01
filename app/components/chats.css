@@ -125,7 +125,8 @@
   background-color: rgb(54, 54, 54);
 }
 .history_item > p:first-child {
-  font-size: 0.6rem;
+  font-size: 0.7rem;
+  margin-bottom: 10px;
   color: rgb(118, 118, 118);
 }
 .recent_active {

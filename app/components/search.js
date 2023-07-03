@@ -4,7 +4,7 @@ import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./chats.css";
 import chatStore from "../store/conversation/store";
-import axios from "axios";
+import { deleteTrash } from "../utils/gaisano/trash";
 
 const Search = ({ setResponse, setQuery }) => {
   const { allThreads, currentThreadId, animate, gptVersion } = chatStore();
@@ -41,24 +41,17 @@ const Search = ({ setResponse, setQuery }) => {
       role: "system",
       content: "be polite always.",
     });
-    const url = "/api/completion";
-    const body = {
-      messages: message,
-      version: gptVersion,
-    };
-    try {
-      const res = await axios.post(url, body, { headers: {} });
-      console.log("inside search res", res);
-      if (res.data.choices) {
-        const reply = res.data.choices[0].message;
-        setResponse(reply);
-      } else {
-        console.log("error in the frontend", res.data);
-        setResponse({ role: "assistant", content: "An Error Occured" });
-      }
-    } catch (error) {
-      console.log(error, "the error itself");
-      setResponse({ role: "assistant", content: "An Error Occured" });
+
+    const res = await deleteTrash(message, gptVersion);
+
+    if (res.choices) {
+      const reply = res.choices[0].message;
+      setResponse(reply);
+    } else {
+      setResponse({
+        role: "assistant",
+        content: `An Error Occured! ${res.error || res}`,
+      });
     }
   };
 

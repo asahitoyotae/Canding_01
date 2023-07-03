@@ -36,6 +36,20 @@ const Recent = ({ active, setActive }) => {
       localStorage.setItem("allThreads", JSON.stringify(filtered));
     }, 500);
   };
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
 
   return (
     <div
@@ -49,6 +63,7 @@ const Recent = ({ active, setActive }) => {
         </p>
       ) : (
         allThreads.map((e, index) => {
+          const date = new Date(JSON.parse(e.thread_id));
           return (
             <div
               onClick={() => {
@@ -63,7 +78,9 @@ const Recent = ({ active, setActive }) => {
               }`}
               style={{ top: `${50 + 75 * index}px` }}
             >
-              <p>{Date(e.thread_id)}</p>
+              <p>{`${date.getFullYear()}-${
+                months[date.getMonth() + 1]
+              }-${date.getDate()}   (${date.getHours()}:${date.getMinutes()}:${date.getSeconds()})`}</p>
               <p>{e.title}</p>
               <div
                 onClick={(event) => {
