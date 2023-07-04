@@ -36,6 +36,15 @@ const Recent = ({ active, setActive }) => {
       localStorage.setItem("allThreads", JSON.stringify(filtered));
     }, 500);
   };
+  const days = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+  ];
   const months = [
     "January",
     "February",
@@ -78,9 +87,9 @@ const Recent = ({ active, setActive }) => {
               }`}
               style={{ top: `${50 + 75 * index}px` }}
             >
-              <p>{`${date.getFullYear()}-${
+              <p>{`${days[date.getDay()]} ${date.getFullYear()}-${
                 months[date.getMonth() + 1]
-              }-${date.getDate()}   (${date.getHours()}:${date.getMinutes()}:${date.getSeconds()})`}</p>
+              }-${date.getDate()}   (${date.getHours()}:${date.getMinutes()}:${date.getSeconds()})H`}</p>
               <p>{e.title}</p>
               <div
                 onClick={(event) => {
