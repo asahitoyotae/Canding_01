@@ -22,7 +22,7 @@ const Checkout = ({ show, setShow }) => {
                     purchase_units: [
                       {
                         amount: {
-                          value: "1.99",
+                          value: "20",
                         },
                       },
                     ],
