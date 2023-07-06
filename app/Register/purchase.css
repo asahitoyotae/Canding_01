@@ -1,0 +1,9 @@
+.purchase_icon {
+  position: absolute;
+  top: 40px;
+  right: 60px;
+  color: white;
+  background-color: rgb(0, 149, 99);
+  padding: 3px 12px;
+  border-radius: 5px;
+}

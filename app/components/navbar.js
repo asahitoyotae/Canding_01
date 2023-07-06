@@ -12,12 +12,14 @@ import { faCircleUser } from "@fortawesome/free-regular-svg-icons";
 import "./customComponents.css";
 import Settings from "./settings";
 import Sidebar from "./sidebar";
+import Activate from "../Register/activate";
 
 const Navbar = () => {
   const [active, setActive] = useState(false);
 
   return (
     <nav className="z-10 text-black">
+      <Activate />
       <div onClick={() => setActive(true)} className="mobile_device_icon ">
         <FontAwesomeIcon
           icon={faCircleUser}
