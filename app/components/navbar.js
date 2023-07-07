@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBook,
@@ -16,6 +16,10 @@ import Activate from "../Register/activate";
 
 const Navbar = () => {
   const [active, setActive] = useState(false);
+  const [size, setSize] = useState();
+  useEffect(() => {
+    setSize(window.innerWidth);
+  }, []);
   return (
     <nav className="z-10 text-black">
       <Activate />
@@ -23,18 +27,8 @@ const Navbar = () => {
         <FontAwesomeIcon
           icon={faCircleUser}
           style={{
-            width:
-              window.innerWidth > 1000
-                ? "80px"
-                : window.innerWidth > 800
-                ? "50px"
-                : "30px",
-            height:
-              window.innerWidth > 1000
-                ? "80px"
-                : window.innerWidth > 800
-                ? "50px"
-                : "30px",
+            width: size > 1000 ? "80px" : size > 800 ? "50px" : "30px",
+            height: size > 1000 ? "80px" : size > 800 ? "50px" : "30px",
             color: "black",
           }}
         />

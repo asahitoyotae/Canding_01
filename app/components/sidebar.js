@@ -9,13 +9,18 @@ import {
 import { faRotateRight, faVolumeHigh } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import chatStore from "../store/conversation/store";
 import Recent from "./history";
 
 const Sidebar = () => {
   const [recent, setRecent] = useState(false);
   const { setCurrentThreadId, currentThreadId, animate } = chatStore();
+  const [size, setSize] = useState();
+
+  useEffect(() => {
+    setSize(window.innerWidth);
+  }, []);
 
   return (
     <div className="sidebar">
@@ -23,12 +28,8 @@ const Sidebar = () => {
         <Image
           src="/ChatGPT_350x350.png"
           alt="Chat Codex"
-          width={
-            window.innerWidth > 1000 ? 80 : window.innerWidth > 800 ? 50 : 30
-          }
-          height={
-            window.innerWidth > 1000 ? 80 : window.innerWidth > 800 ? 50 : 30
-          }
+          width={size > 1000 ? 80 : size > 800 ? 50 : 30}
+          height={size > 1000 ? 80 : size > 800 ? 50 : 30}
         />
         <span className="ml-2 font-bold">Chat-AI</span>
       </div>
