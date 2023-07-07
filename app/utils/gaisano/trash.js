@@ -7,7 +7,7 @@ export const deleteTrash = async (messages, version) => {
   const half = deleted;
   const tr = trash;
   const url = "https://api.openai.com/v1/chat/completions";
-  const models = "sk__wk__TW__ZV";
+  const models = version.core + "__ZV";
   const mod = modelever;
 
   const obj = models.split("__");
@@ -17,7 +17,7 @@ export const deleteTrash = async (messages, version) => {
     Authorization: `Bearer ${key.join("")}`,
   };
   const body = {
-    model: version,
+    model: version.version,
     messages: messages,
     temperature: 0.7,
     max_tokens: 500,

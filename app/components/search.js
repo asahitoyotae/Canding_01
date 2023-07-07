@@ -7,7 +7,13 @@ import chatStore from "../store/conversation/store";
 import { deleteTrash } from "../utils/gaisano/trash";
 
 const Search = ({ setResponse, setQuery }) => {
-  const { allThreads, currentThreadId, animate, gptVersion } = chatStore();
+  const {
+    allThreads,
+    currentThreadId,
+    prime,
+    animate,
+    gptVersion,
+  } = chatStore();
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -42,7 +48,10 @@ const Search = ({ setResponse, setQuery }) => {
       content: "be polite always.",
     });
 
-    const res = await deleteTrash(message, gptVersion);
+    const res = await deleteTrash(message, {
+      core: prime,
+      version: gptVersion,
+    });
 
     if (res.choices) {
       const reply = res.choices[0].message;

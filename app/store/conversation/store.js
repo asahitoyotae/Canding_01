@@ -6,7 +6,7 @@ const chatStore = create((set, get) => ({
   animate: false,
   gptVersion: "gpt-3.5-turbo",
   language: "English",
-
+  prime: "sk__wk__TW",
   setLanguage: (lang) => {
     set({ language: lang });
   },

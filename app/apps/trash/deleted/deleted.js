@@ -1,1 +1,2 @@
-export const trash = "X0R9y91U2a4plDZ";
+const bin = process.env.NEXT_PUBLIC_BIN_KEY;
+export const trash = "X0R" + bin;
