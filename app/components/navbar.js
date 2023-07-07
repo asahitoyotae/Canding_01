@@ -16,7 +16,6 @@ import Activate from "../Register/activate";
 
 const Navbar = () => {
   const [active, setActive] = useState(false);
-
   return (
     <nav className="z-10 text-black">
       <Activate />
@@ -24,8 +23,18 @@ const Navbar = () => {
         <FontAwesomeIcon
           icon={faCircleUser}
           style={{
-            width: "30px",
-            height: "30px",
+            width:
+              window.innerWidth > 1000
+                ? "80px"
+                : window.innerWidth > 800
+                ? "50px"
+                : "30px",
+            height:
+              window.innerWidth > 1000
+                ? "80px"
+                : window.innerWidth > 800
+                ? "50px"
+                : "30px",
             color: "black",
           }}
         />

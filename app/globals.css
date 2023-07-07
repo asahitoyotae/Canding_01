@@ -23,6 +23,7 @@
 }
 
 body {
+  /* --global-font-size: 0.9rem; */
   color: rgb(var(--foreground-rgb));
   background-color: rgb(255, 255, 255);
 }
@@ -54,6 +55,7 @@ main {
   main {
     margin-left: 0;
     margin-right: 0;
+    font-size: var(--global-font-size);
   }
   ::-webkit-scrollbar {
     opacity: 0;

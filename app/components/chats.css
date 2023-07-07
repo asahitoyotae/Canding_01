@@ -69,10 +69,10 @@
 @media screen and (max-width: 654px) {
   .conversations {
     width: 100%;
-    font-size: 0.8rem;
+    font-size: var(--global-font-size);
   }
   .assistant_chat {
-    font-size: 0.8rem;
+    font-size: var(--global-font-size);
   }
   .search_bar {
     padding-left: 0;
@@ -84,10 +84,8 @@
     box-shadow: 2px 3px 12px 3px rgb(184, 184, 184, 0.2);
   }
   .search_bar form textarea {
-    font-size: 0.8rem;
+    font-size: var(--global-font-size);
     margin: 2px 0;
-  }
-  .search_bar form button {
   }
 }
 .recent {
@@ -97,7 +95,7 @@
   height: calc(100vh - 45px);
   background-color: rgb(35, 35, 35);
   padding: 20px 10px;
-  padding-top: 15%;
+  padding-top: 20%;
   padding-bottom: 80px;
   overflow-y: auto;
   overflow-x: auto;

@@ -12,6 +12,13 @@ export default function Home() {
   const { setAllThreads, setCurrentThreadId } = chatStore();
 
   useEffect(() => {
+    if (window.innerWidth > 1000) {
+      document.body.style.setProperty("--global-font-size", "1rem");
+    } else if (window.innerWidth > 800 && window.innerWidth < 1000) {
+      document.body.style.setProperty("--global-font-size", "0.9rem");
+    } else if (window.innerWidth < 800) {
+      document.body.style.setProperty("--global-font-size", "0.8rem");
+    }
     const storage = JSON.parse(localStorage.getItem("allThreads"));
     const id = JSON.parse(localStorage.getItem("currentThreadId"));
     storage && setAllThreads(storage);
@@ -21,6 +28,7 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center pt-24 px-2 relative">
       <div className="mb-5">Hello world</div>
+      <div className="mb-6 rounded-md bg-teal-700 px-4 py-1 text-white">{`your screen width is: ${window.innerWidth}`}</div>
       <Conversations
         setQuery={setQuery}
         setResponse={setResponse}

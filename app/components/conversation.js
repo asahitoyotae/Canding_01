@@ -217,18 +217,12 @@ const Conversations = ({ query, response, setQuery, setResponse }) => {
                     setAnimate(false);
                     setTimeout(() => {
                       const threads = [...allThreads];
-                      const index = threads.findIndex(
-                        (e) => e.thread_id === currentThreadId
-                      );
-                      threads.splice(index, 1);
-                      currentChat.conv.push(response);
-                      threads.unshift(currentChat);
+                      threads[0].conv.push(response);
                       localStorage.setItem(
                         "allThreads",
                         JSON.stringify(threads)
                       );
                       setAllThreads(threads);
-                      setConversation(currentChat.conv);
                       setResponse({});
                     }, 0);
                   })

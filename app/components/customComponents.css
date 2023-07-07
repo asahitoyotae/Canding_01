@@ -5,15 +5,15 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10% 15px 40px 15px;
+  padding: 17% 15px 40px 15px;
   gap: 30px;
-  background-color: rgb(255, 255, 255);
+  background-color: white;
   width: 100%;
 }
 
 .mobile_device_icon {
   position: absolute;
-  top: 40px;
+  top: 60px;
   right: 15px;
   cursor: pointer;
   order: 1;
@@ -125,7 +125,7 @@ nav {
 
   .mobile_sidebar {
     visibility: visible;
-    padding: 40px 15px;
+    padding: 60px 15px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -141,7 +141,7 @@ nav {
     justify-content: space-around;
     width: 100%;
     padding: 10px 10px;
-    font-size: 0.8rem;
+    font-size: var(--global-font-size);
     background-color: rgb(255, 255, 255);
   }
   .disktop_sidebar {

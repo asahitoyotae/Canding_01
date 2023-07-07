@@ -30,7 +30,7 @@ const Settings = ({ active, setActive }) => {
           height={50}
           alt="logo"
         />
-        <span className="text-white text-lg ml-3">Canding</span>
+        <span className="text-white text-lg ml-3">Chat-AI</span>
       </div>
       <p className="text-gray-200 ml-2 mb-1">Settings</p>
       <ul className="flex justify-center flex-col items-center w-full rounded-xl mb-3">

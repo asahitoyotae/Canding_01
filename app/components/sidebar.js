@@ -23,10 +23,14 @@ const Sidebar = () => {
         <Image
           src="/ChatGPT_350x350.png"
           alt="Chat Codex"
-          width={30}
-          height={30}
+          width={
+            window.innerWidth > 1000 ? 80 : window.innerWidth > 800 ? 50 : 30
+          }
+          height={
+            window.innerWidth > 1000 ? 80 : window.innerWidth > 800 ? 50 : 30
+          }
         />
-        <span className="ml-2 font-bold">Canding</span>
+        <span className="ml-2 font-bold">Chat-AI</span>
       </div>
       <div className="mobile_buttons">
         <div
