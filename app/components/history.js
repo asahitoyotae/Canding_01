@@ -65,12 +65,14 @@ const Recent = ({ active, setActive }) => {
 
   const getUnique = (array) => {
     const uniqueIds = [];
+    const allIds = [];
 
     for (const obj of array) {
       const id = obj.thread_id;
-      if (uniqueIds.includes(id)) {
+      if (allIds.includes(id)) {
       } else {
         uniqueIds.push(obj);
+        allIds.push(id);
       }
     }
     return uniqueIds;
