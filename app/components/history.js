@@ -63,12 +63,12 @@ const Recent = ({ active, setActive }) => {
     "December",
   ];
 
-  const getUnique = (all) => {
+  const getUnique = (array) => {
     const uniqueIds = [];
 
-    for (const obj of all) {
+    for (const obj of array) {
       const id = obj.thread_id;
-      if (uniqueIds.includes((e) => e.thread_id == id)) {
+      if (uniqueIds.includes(id)) {
       } else {
         uniqueIds.push(obj);
       }
@@ -85,7 +85,7 @@ const Recent = ({ active, setActive }) => {
         active ? "recent_active" : "recent_inactive"
       } relative`}
     >
-      {alldata.length == 0 ? (
+      {alldata.length < 1 ? (
         <p className="w-full h-full flex items-center justify-center text-gray-500">
           (No Recent Activity)
         </p>
