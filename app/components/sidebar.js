@@ -28,8 +28,8 @@ const Sidebar = () => {
         <Image
           src="/ChatGPT_350x350.png"
           alt="Chat Codex"
-          width={size > 1000 ? 80 : size > 800 ? 50 : 30}
-          height={size > 1000 ? 80 : size > 800 ? 50 : 30}
+          width={size > 500 ? 50 : size > 400 ? 40 : 30}
+          height={size > 500 ? 50 : size > 400 ? 40 : 30}
         />
         <span className="ml-2 font-bold">Chat-AI</span>
       </div>

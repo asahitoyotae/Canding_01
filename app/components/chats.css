@@ -167,3 +167,32 @@
   left: 100%;
   transition: 0.5s ease-in;
 }
+.shopping_cart {
+  position: absolute;
+  top: 60px;
+  right: 60px;
+  padding: 3px 12px;
+  background-color: #ffc439;
+  color: white;
+  border-radius: 5px;
+  overflow-y: auto;
+}
+.shopping_container {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 14;
+  background-color: white;
+  padding: 80px 10px;
+}
+.shopping_active {
+  visibility: visible;
+  left: 0;
+  transition: 0.8s ease-in-out;
+}
+.shopping_inactive {
+  visibility: hidden;
+  left: calc(100% + 10px);
+  transition: 0.8s ease-in-out;
+}

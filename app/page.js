@@ -14,11 +14,11 @@ export default function Home() {
 
   useEffect(() => {
     setSize(window.innerWidth);
-    if (window.innerWidth > 1000) {
+    if (window.innerWidth > 500) {
       document.body.style.setProperty("--global-font-size", "1rem");
-    } else if (window.innerWidth > 800 && window.innerWidth < 1000) {
+    } else if (window.innerWidth > 400 && window.innerWidth < 500) {
       document.body.style.setProperty("--global-font-size", "0.9rem");
-    } else if (window.innerWidth < 800) {
+    } else if (window.innerWidth < 400) {
       document.body.style.setProperty("--global-font-size", "0.8rem");
     }
     const storage = JSON.parse(localStorage.getItem("allThreads"));
