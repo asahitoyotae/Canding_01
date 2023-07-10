@@ -3,39 +3,166 @@
 import {
   faCartShopping,
   faChevronRight,
+  faDove,
+  faDragon,
+  faFrog,
+  faOtter,
+  faStar,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import paymentStore from "../payment/storePayment";
+//import jwt from "jsonwebtoken";
+var jwt = require("jsonwebtoken");
 
 const Premium = () => {
-  const [showPaypal, setShowPaypal] = useState(false);
+  const [size, setSize] = useState();
+  const [userIcon, setUserIcon] = useState({
+    icon: faCartShopping,
+    color: "#ffc439",
+  });
   const [amount, setAmount] = useState(17);
-  const { choosenService, setService } = paymentStore();
+
+  const {
+    choosenService,
+    setService,
+    setToken,
+    setShowPaypal,
+    showPaypal,
+  } = paymentStore();
+
+  useEffect(() => {
+    setSize(window.innerWidth);
+    const isPaying = localStorage.getItem("__validity__");
+    if (isPaying) {
+      jwt.verify(
+        isPaying,
+        process.env.NEXT_PUBLIC_AUTH_KEY_VALID,
+        (err, dec) => {
+          if (err) {
+            setUserIcon({
+              icon: faCartShopping,
+              color: "#ffc439",
+            });
+          } else {
+            setUserIcon({
+              icon: faStar,
+              color: "rgb(0, 147, 100)",
+            });
+          }
+        }
+      );
+    } else {
+      setUserIcon({
+        icon: faCartShopping,
+        color: "#ffc439",
+      });
+    }
+  }, [showPaypal]);
   return (
-    <div onClick={() => setShowPaypal(true)} className="shopping_cart">
-      <FontAwesomeIcon icon={faCartShopping} />
+    <div
+      onClick={() => {
+        const isPaying = localStorage.getItem("__validity__");
+        if (isPaying) {
+          jwt.verify(
+            isPaying,
+            process.env.NEXT_PUBLIC_AUTH_KEY_VALID,
+            (err, dec) => {
+              if (err) {
+                setShowPaypal(true);
+              } else {
+                return;
+              }
+            }
+          );
+        } else {
+          setShowPaypal(true);
+        }
+      }}
+      className="shopping_cart"
+      style={{
+        width: size > 500 ? "60px" : size > 400 ? "50px" : "40px",
+        height: size > 500 ? "50px" : size > 400 ? "40px" : "30px",
+        backgroundColor: userIcon.color,
+      }}
+    >
+      <FontAwesomeIcon
+        icon={userIcon.icon}
+        style={{
+          color: "white",
+          width: size > 500 ? "40px" : size > 400 ? "30px" : "20px",
+          height: size > 500 ? "40px" : size > 400 ? "30px" : "20px",
+        }}
+      />
       <div
         className={`overflow-y-auto shopping_container ${
           showPaypal == true ? "shopping_active" : "shopping_inactive"
         }`}
       >
         <div
+          className="grid grid-cols-9 gap-4 duration-500 w-full py-4 px-3 text-black my-3 rounded-md ${
+            bg-gray-100"
+        >
+          <div className="col-span-2 flex items-center justify-center">
+            <FontAwesomeIcon
+              icon={faFrog}
+              style={{ width: "50px", height: "50px" }}
+            />
+          </div>
+          <div className="catalog_mid col-span-5 text-sm ">
+            <p>Frog </p>
+            <p>Free account is limited for up to 3 request only.</p>
+          </div>
+          <div className="col-span-2 text-xl font-bold text-center flex items-center justify-center"></div>
+        </div>
+        <div
           onClick={() => setAmount(5)}
-          className={` duration-500 w-full py-6 px-3 text-black my-3 rounded-md ${
-            amount == 5 ? "bg-teal-400" : "bg-gray-200"
+          className={`relative grid grid-cols-9 gap-4 duration-500 w-full py-4 px-3 text-black my-3 rounded-md ${
+            amount == 5 ? "bg-orange-200" : "bg-gray-100"
           }`}
         >
-          1-Week
+          <div className="col-span-2 flex justify-center">
+            <FontAwesomeIcon
+              icon={faDove}
+              style={{ width: "50px", height: "50px" }}
+            />
+          </div>
+          <div className="catalog_mid col-span-5 text-sm ">
+            <p>Dove</p>
+            <p>
+              Ideal for students in need of writing assignments, copywriting,
+              article writing and more.
+            </p>
+          </div>
+          <div className="col-span-2 text-xl font-bold text-center flex items-center justify-center">
+            7 Days
+          </div>
+          <div className="price">5.00 usd</div>
         </div>
         <div
           onClick={() => setAmount(17)}
-          className={` duration-500 w-full py-6 px-3 text-black my-3 rounded-md ${
-            amount == 17 ? "bg-teal-400" : "bg-gray-200"
+          className={`relative grid grid-cols-9 gap-4 duration-500 w-full py-4 px-3 text-black my-3 rounded-md ${
+            amount == 17 ? "bg-orange-200" : "bg-gray-100"
           }`}
         >
-          1-Month
+          <div className="col-span-2 flex justify-center">
+            <FontAwesomeIcon
+              icon={faDragon}
+              style={{ width: "50px", height: "50px" }}
+            />{" "}
+          </div>
+          <div className="catalog_mid col-span-5 text-sm ">
+            <p>Dragon </p>
+            <p>
+              Perfect for Students and Individuals engage in article writting,
+              copywritng etc. Best for developers.
+            </p>
+          </div>
+          <div className="col-span-2 text-xl font-bold text-center flex items-center justify-center">
+            30 Days
+          </div>
+          <div className="price">17.00 usd</div>
         </div>
         <div className="mt-7 overflow-y-auto">
           <PayPalScriptProvider
@@ -69,12 +196,34 @@ const Premium = () => {
               }}
               onApprove={function (data, actions) {
                 return actions.order.capture().then(function (event) {
-                  console.log(
-                    event.purchase_units[0].amount.value,
-                    "amount purchase"
+                  const paidAmount = event.purchase_units[0].amount.value;
+                  const payload = {
+                    orderId: data.orderID,
+                    payerId: data.payerID,
+                    amount: paidAmount,
+                  };
+                  const days = paidAmount == 17 ? "30 days" : "7 days";
+                  const secret = process.env.NEXT_PUBLIC_AUTH_KEY_VALID;
+                  const token = jwt.sign(
+                    payload,
+                    secret,
+                    { expiresIn: days },
+                    (error, token) => {
+                      if (error) {
+                        console.log(error);
+                      } else {
+                        console.log("token", token);
+                        localStorage.setItem("__validity__", token);
+                        setToken(token);
+                        setShowPaypal(false);
+                        setService(event.purchase_units[0].amount.value);
+                        setUserIcon({
+                          icon: faStar,
+                          color: "rgb(0, 147, 100)",
+                        }); // Your code here after capture the order
+                      }
+                    }
                   );
-                  setShowPaypal(false);
-                  setService(event.purchase_units[0].amount.value); // Your code here after capture the order
                 });
               }}
             />
@@ -83,7 +232,7 @@ const Premium = () => {
         <div className="flex">
           <div className="flex-1"></div>
           <button
-            className="bg-gray-800 px-4 py-2 rounded-lg pt-3"
+            className="back_button"
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
