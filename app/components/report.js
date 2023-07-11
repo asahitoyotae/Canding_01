@@ -18,7 +18,7 @@ const Report = ({ showReportFrom, setshowReportForm }) => {
     const message = e.target.message.value;
 
     if (message == "") return;
-    const url = "http://localhost:9000/users/report";
+    const url = "https://canding-back-01.onrender.com/users/report";
     const body = {
       email: email,
       message: message,
