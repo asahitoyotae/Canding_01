@@ -46,6 +46,7 @@ const Report = ({ showReportFrom, setshowReportForm }) => {
         }, 3000);
       }
     } catch (error) {
+      console.log(error);
       setLoading(false);
       setSuccess({
         success: false,
@@ -96,7 +97,9 @@ const Report = ({ showReportFrom, setshowReportForm }) => {
         </div>
         <div>
           {loading ? (
-            <div>. . . . .</div>
+            <div className="loader_container">
+              <div className="loader"></div>
+            </div>
           ) : success == null ? (
             <button type="submit">Submit</button>
           ) : success.success ? (
