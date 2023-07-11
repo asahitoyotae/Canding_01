@@ -114,13 +114,13 @@ nav {
     top: 0;
     left: 0;
     visibility: visible;
-    transition: 0.8s ease-in-out;
+    transition: 0.7s ease-in-out;
   }
   .inactive {
     top: 0;
     left: 100%;
     visibility: hidden;
-    transition: 0.8s ease-in-out;
+    transition: 0.7s ease-in-out;
   }
 
   .mobile_sidebar {

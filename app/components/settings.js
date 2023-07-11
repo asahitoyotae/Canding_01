@@ -13,17 +13,22 @@ import {
   faQuestion,
   faShare,
   faStar,
-  faVolumeHigh,
 } from "@fortawesome/free-solid-svg-icons";
 import "./choices.css";
 import chatStore from "../store/conversation/store";
 import Terms from "./terms";
 import paymentStore from "../payment/storePayment";
+import About from "./about";
+import Report from "./report";
+import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
 
 const Settings = ({ active, setActive }) => {
   const { setGptVersion, gptVersion, setLanguage, language } = chatStore();
   const { showTerms, setShowTerms } = paymentStore();
+  const [showReportFrom, setshowReportForm] = useState(false);
+  const [showAbout, setShowAbout] = useState(false);
   const [choice, setChoice] = useState("");
+  const { setShowPaypal } = paymentStore();
   return (
     <div className={`drop_down z-10 ${active ? "active" : "inactive"}`}>
       <div className="flex items-center justify-center mb-6">
@@ -76,13 +81,13 @@ const Settings = ({ active, setActive }) => {
             <div
               onClick={(e) => {
                 e.stopPropagation();
-                setGptVersion("gpt-4");
+                setGptVersion("gpt-3.5-turbo");
                 setTimeout(() => {
                   setChoice("");
                 }, 0);
               }}
             >
-              GPT-4
+              GPT-4 (comming soon)
             </div>
           </div>
         </li>
@@ -124,7 +129,10 @@ const Settings = ({ active, setActive }) => {
             </div>
           </div>
         </li>
-        <li className="flex justify-between w-full p-2 ">
+        <li
+          onClick={() => setShowPaypal(true)}
+          className="flex justify-between w-full p-2 "
+        >
           <div className="flex gap-2 items-center justify center ml-2">
             <FontAwesomeIcon
               icon={faMedal}
@@ -141,16 +149,18 @@ const Settings = ({ active, setActive }) => {
             </span>
           </div>
         </li>
-        <li className="flex justify-between w-full p-2">
+        <li
+          onClick={() => setshowReportForm(true)}
+          className="flex justify-between w-full p-2"
+        >
           <div className="flex gap-2 items-center justify center ml-2">
             <FontAwesomeIcon
-              icon={faVolumeHigh}
+              icon={faEnvelope}
               style={{ width: "15px", height: "15px" }}
-            />{" "}
-            <span>Spoken Responses</span>
-          </div>{" "}
+            />
+            <span>Report Issue</span>
+          </div>
           <div>
-            off
             <span className="ml-3 text-lg">
               <FontAwesomeIcon
                 icon={faChevronRight}
@@ -198,7 +208,12 @@ const Settings = ({ active, setActive }) => {
             </span> */}
           </div>
         </li>
-        <li className="flex justify-between w-full p-2 border-b">
+        <li
+          onClick={() => {
+            setShowAbout(true);
+          }}
+          className="flex justify-between w-full p-2 border-b"
+        >
           <div className="flex gap-2 items-center justify center ml-2">
             <FontAwesomeIcon
               icon={faQuestion}
@@ -251,6 +266,11 @@ const Settings = ({ active, setActive }) => {
         </button>
       </div>
       <Terms showTerms={showTerms} setShowTerms={setShowTerms} />
+      <About showAbout={showAbout} setShowAbout={setShowAbout} />
+      <Report
+        showReportFrom={showReportFrom}
+        setshowReportForm={setshowReportForm}
+      />
     </div>
   );
 };
