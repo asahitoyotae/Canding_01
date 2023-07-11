@@ -17,9 +17,12 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import "./choices.css";
 import chatStore from "../store/conversation/store";
+import Terms from "./terms";
+import paymentStore from "../payment/storePayment";
 
 const Settings = ({ active, setActive }) => {
   const { setGptVersion, gptVersion, setLanguage, language } = chatStore();
+  const { showTerms, setShowTerms } = paymentStore();
   const [choice, setChoice] = useState("");
   return (
     <div className={`drop_down z-10 ${active ? "active" : "inactive"}`}>
@@ -168,13 +171,13 @@ const Settings = ({ active, setActive }) => {
             <span>Rate App</span>
           </div>{" "}
           <div>
-            5 star
-            <span className="ml-3 text-lg">
+            please rate us 5 star
+            {/* <span className="ml-3 text-lg">
               <FontAwesomeIcon
                 icon={faChevronRight}
                 style={{ width: "14px", height: "14px" }}
               />
-            </span>
+            </span> */}
           </div>
         </li>
         <li className="flex justify-between w-full p-2 border-b">
@@ -186,12 +189,13 @@ const Settings = ({ active, setActive }) => {
             <span>Share</span>
           </div>{" "}
           <div>
-            <span className="ml-3 text-lg">
+            please tell your friends
+            {/* <span className="ml-3 text-lg">
               <FontAwesomeIcon
                 icon={faChevronRight}
                 style={{ width: "14px", height: "14px" }}
               />
-            </span>
+            </span> */}
           </div>
         </li>
         <li className="flex justify-between w-full p-2 border-b">
@@ -211,13 +215,16 @@ const Settings = ({ active, setActive }) => {
             </span>
           </div>
         </li>
-        <li className="flex justify-between w-full p-2">
+        <li
+          onClick={() => setShowTerms(true)}
+          className="flex justify-between w-full p-2"
+        >
           <div className="flex gap-2 items-center justify center ml-2">
             <FontAwesomeIcon
               icon={faBook}
               style={{ width: "15px", height: "15px" }}
             />{" "}
-            <span>Terms of Use</span>
+            <span>Terms and conditions</span>
           </div>{" "}
           <div>
             <span className="ml-3 text-lg">
@@ -229,18 +236,21 @@ const Settings = ({ active, setActive }) => {
           </div>
         </li>
       </ul>
-      <div className="w-full flex text-gray-200">
-        <FontAwesomeIcon
-          onClick={() => setActive(false)}
-          icon={faChevronRight}
-          style={{
-            width: "24px",
-            height: "24px",
-            position: "absolute",
-            right: "20px",
-          }}
-        />
+      <div className="w-full flex">
+        <div className="flex-1"></div>
+        <button className="terms_button">
+          <FontAwesomeIcon
+            onClick={() => setActive(false)}
+            icon={faChevronRight}
+            style={{
+              width: "20px",
+              height: "20px",
+              color: "black",
+            }}
+          />
+        </button>
       </div>
+      <Terms showTerms={showTerms} setShowTerms={setShowTerms} />
     </div>
   );
 };

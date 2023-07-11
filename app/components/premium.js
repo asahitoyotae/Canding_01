@@ -6,6 +6,7 @@ import {
   faDove,
   faDragon,
   faFrog,
+  faMedal,
   faOtter,
   faStar,
 } from "@fortawesome/free-solid-svg-icons";
@@ -47,7 +48,7 @@ const Premium = () => {
             });
           } else {
             setUserIcon({
-              icon: faStar,
+              icon: faMedal,
               color: "rgb(0, 147, 100)",
             });
           }
@@ -146,7 +147,7 @@ const Premium = () => {
             amount == 17 ? "bg-orange-200" : "bg-gray-100"
           }`}
         >
-          <div className="col-span-2 flex justify-center">
+          <div className="col-span-2 flex justify-center flex-col">
             <FontAwesomeIcon
               icon={faDragon}
               style={{ width: "50px", height: "50px" }}
@@ -218,7 +219,7 @@ const Premium = () => {
                         setShowPaypal(false);
                         setService(event.purchase_units[0].amount.value);
                         setUserIcon({
-                          icon: faStar,
+                          icon: faMedal,
                           color: "rgb(0, 147, 100)",
                         }); // Your code here after capture the order
                       }
@@ -241,7 +242,7 @@ const Premium = () => {
           >
             <FontAwesomeIcon
               icon={faChevronRight}
-              style={{ width: "20px", height: "20px", color: "white" }}
+              style={{ width: "20px", height: "20px", color: "black" }}
             />
           </button>
         </div>

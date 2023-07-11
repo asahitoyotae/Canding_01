@@ -5,6 +5,10 @@ const paymentStore = create((set, get) => ({
   choosenService: null,
   token: "",
   showPaypal: false,
+  showTerms: false,
+  setShowTerms: (show) => {
+    set({ showTerms: show });
+  },
   setShowPaypal: (bool) => {
     set({ showPaypal: bool });
   },

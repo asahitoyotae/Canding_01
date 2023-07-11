@@ -184,7 +184,7 @@
   width: 100vw;
   height: 100vh;
   z-index: 14;
-  background-color: rgb(90, 90, 90);
+  background-color: rgb(60, 60, 60);
   padding: 20px 10px;
 }
 .shopping_active {
@@ -204,7 +204,7 @@
   font-size: 0.7rem;
 }
 .back_button {
-  background-color: rgb(43, 43, 43);
+  background-color: rgb(208, 208, 208);
   width: 30px;
   height: 30px;
   display: flex;
@@ -222,4 +222,41 @@
   border-radius: 5px;
   font-weight: bold;
   font-size: 0.8rem;
+}
+
+.terms_and_conditions {
+  position: fixed;
+  z-index: 14;
+  top: 0;
+  background-color: rgb(41, 41, 41);
+  overflow-y: auto;
+  width: 100vw;
+  height: 100vh;
+  color: rgb(195, 195, 195);
+  padding: 40px 10px;
+  padding-bottom: 100px;
+  text-align: left;
+  font-size: 0.8rem;
+}
+.terms_and_conditions li {
+  list-style: decimal;
+}
+.terms_active {
+  visibility: visible;
+  transition: 0.8s ease-in-out;
+  left: 0;
+}
+.terms_inactive {
+  visibility: hidden;
+  transition: 0.8s ease-in-out;
+  left: calc(100% + 10px);
+}
+.terms_button {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(208, 208, 208);
+  border-radius: 5px;
 }

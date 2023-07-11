@@ -5,7 +5,7 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 17% 15px 40px 15px;
+  padding: 60px 15px 40px 15px;
   gap: 30px;
   background-color: white;
   width: 100%;
@@ -42,15 +42,15 @@ nav {
   background-color: rgb(35, 35, 35);
   z-index: 10;
 }
-.drop_down ul {
+.drop_down > ul {
   font-size: 0.8rem;
   background-color: rgb(41, 41, 41);
   color: rgb(171, 171, 171);
 }
-.drop_down ul li {
+.drop_down > ul li {
   border-bottom: 1px solid rgb(81, 81, 81);
 }
-.drop_down ul li:last-child {
+.drop_down > ul li:last-child {
   border-bottom: none;
 }
 .active {
