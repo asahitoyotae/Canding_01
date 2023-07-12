@@ -168,9 +168,6 @@
   transition: 0.5s ease-in;
 }
 .shopping_cart {
-  position: absolute;
-  top: 60px;
-  right: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -186,6 +183,11 @@
   z-index: 14;
   background-color: rgb(60, 60, 60);
   padding: 20px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  overflow-y: auto;
 }
 .shopping_active {
   visibility: visible;

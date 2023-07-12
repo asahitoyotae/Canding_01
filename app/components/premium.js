@@ -230,7 +230,7 @@ const Premium = () => {
             />
           </PayPalScriptProvider>
         </div>
-        <div className="flex">
+        <div className="flex w-full">
           <div className="flex-1"></div>
           <button
             className="back_button"

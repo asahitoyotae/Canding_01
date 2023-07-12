@@ -59,7 +59,7 @@ const Report = ({ showReportFrom, setshowReportForm }) => {
   };
   return (
     <div
-      className={`terms_and_conditions ${
+      className={`overflow-y-auto terms_and_conditions ${
         showReportFrom ? "terms_active" : "terms_inactive"
       } flex flex-col items-center justify-center`}
     >

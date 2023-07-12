@@ -30,7 +30,11 @@ const Settings = ({ active, setActive }) => {
   const [choice, setChoice] = useState("");
   const { setShowPaypal } = paymentStore();
   return (
-    <div className={`drop_down z-10 ${active ? "active" : "inactive"}`}>
+    <div
+      className={`overflow-y-auto drop_down z-10 ${
+        active ? "active" : "inactive"
+      }`}
+    >
       <div className="flex items-center justify-center mb-6">
         <Image
           src="/ChatGPT_white_350x350.png"
@@ -40,7 +44,7 @@ const Settings = ({ active, setActive }) => {
         />
         <span className="text-white text-lg ml-3">Chat-AI</span>
       </div>
-      <p className="text-gray-200 ml-2 mb-1">Settings</p>
+      <p className="text-gray-200 ml-2 mb-1 w-full text-left">Settings</p>
       <ul className="flex justify-center flex-col items-center w-full rounded-xl mb-3">
         <li
           onClick={() => setChoice("gptVersion")}
@@ -170,7 +174,7 @@ const Settings = ({ active, setActive }) => {
           </div>
         </li>
       </ul>
-      <p className=" ml-2 mb-1 text-gray-200">About</p>
+      <p className="w-full text-left ml-2 mb-1 text-gray-200">About</p>
       <ul className="flex justify-center flex-col items-center w-full bg-gray-500 rounded-xl mb-3">
         <li className="flex justify-between w-full p-2 border-b">
           <div className="flex gap-2 items-center justify center ml-2">

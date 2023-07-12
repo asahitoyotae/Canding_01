@@ -5,15 +5,19 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 60px 15px 40px 15px;
+  padding: 65px 15px 40px 15px;
   gap: 30px;
   background: linear-gradient(to bottom, rgb(219, 219, 219), white);
   width: 100%;
 }
 
 .mobile_device_icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.3rem;
   position: absolute;
-  top: 60px;
+  bottom: 5px;
   right: 15px;
   cursor: pointer;
   order: 1;
@@ -103,6 +107,9 @@ nav {
     visibility: hidden;
   }
   .drop_down {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
     height: 100vh;
     padding: 30px 10px;
@@ -124,8 +131,10 @@ nav {
   }
 
   .mobile_sidebar {
+    position: absolute;
+    left: 15px;
+    bottom: 5px;
     visibility: visible;
-    padding: 60px 15px;
     display: flex;
     justify-content: center;
     align-items: center;
