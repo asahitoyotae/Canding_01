@@ -7,7 +7,7 @@ nav {
   align-items: center;
   padding: 60px 15px 40px 15px;
   gap: 30px;
-  background-color: white;
+  background: linear-gradient(to bottom, black, white);
   width: 100%;
 }
 
