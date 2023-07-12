@@ -61,11 +61,11 @@ export default function Home() {
       <div className="mt-9 mb-3 px-4 py-1 text-black font-bold bg-gray-300 rounded-md">
         Examples
       </div>
-      <div className="px-4 py-1 text-white mb-3 rounded-md">
+      <div className="examples_page px-4 py-1 text-white mb-3 rounded-md">
         What are the ethical considerations surrounding aggressive tax avoidance
         and evasion schemes?
       </div>
-      <div className="px-4 py-1 text-white mb-3 rounded-md">
+      <div className="examples_page px-4 py-1 text-white mb-3 rounded-md">
         Write a function in javascript that fetch data from a public API.
       </div>
       <p className="mb-6 rounded-md bg-orange-500 px-4 py-1 text-white text-center">
