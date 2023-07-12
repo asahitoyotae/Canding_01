@@ -116,6 +116,9 @@ nav {
     border-radius: 0;
     z-index: 10;
   }
+  .drop_down li:active {
+    background-color: rgb(59, 59, 59);
+  }
 
   .active {
     top: 0;
