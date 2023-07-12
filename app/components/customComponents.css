@@ -110,9 +110,9 @@ nav {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
+    width: 100vw;
     height: 100vh;
-    padding: 30px 10px;
+    padding: 0 10px;
     border-radius: 0;
     z-index: 10;
   }
@@ -128,7 +128,7 @@ nav {
   }
   .inactive {
     top: 0;
-    left: 100%;
+    left: calc(100% + 10px);
     visibility: hidden;
     transition: 0.7s ease-in-out;
   }
