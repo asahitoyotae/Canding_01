@@ -28,7 +28,7 @@ const Navbar = () => {
     <nav className="z-10 text-black ">
       <div className="mobile_sidebar">
         <Image
-          src="/ChatGPT_350x350.png"
+          src="/ChatGPT_white_350x350.png"
           alt="Chat Codex"
           width={size > 500 ? 50 : size > 400 ? 40 : 30}
           height={size > 500 ? 50 : size > 400 ? 40 : 30}
@@ -43,7 +43,7 @@ const Navbar = () => {
           style={{
             width: size > 500 ? "50px" : size > 400 ? "40px" : "30px",
             height: size > 500 ? "50px" : size > 400 ? "40px" : "30px",
-            color: "black",
+            color: "rgb(236, 236, 236)",
           }}
         />
       </div>

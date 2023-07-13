@@ -49,7 +49,7 @@ const Premium = () => {
           } else {
             setUserIcon({
               icon: faMedal,
-              color: "rgb(0, 147, 100)",
+              color: "#f98433",
             });
           }
         }
@@ -220,7 +220,7 @@ const Premium = () => {
                         setService(event.purchase_units[0].amount.value);
                         setUserIcon({
                           icon: faMedal,
-                          color: "rgb(0, 147, 100)",
+                          color: "#f98433",
                         }); // Your code here after capture the order
                       }
                     }
