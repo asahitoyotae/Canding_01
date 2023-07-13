@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBook,
   faCircleDollarToSlot,
+  faDiceD20,
   faHome,
 } from "@fortawesome/free-solid-svg-icons";
 import { faCircleUser } from "@fortawesome/free-regular-svg-icons";
@@ -27,13 +28,21 @@ const Navbar = () => {
   return (
     <nav className="z-10 text-black ">
       <div className="mobile_sidebar">
-        <Image
+        <FontAwesomeIcon
+          icon={faDiceD20}
+          style={{
+            width: size > 500 ? "50px" : size > 400 ? "40px" : "30px",
+            height: size > 500 ? "50px" : size > 400 ? "40px" : "30px",
+            color: "rgb(236, 236, 236)",
+          }}
+        />
+        {/* <Image
           src="/ChatGPT_white_350x350.png"
           alt="Chat Codex"
           width={size > 500 ? 50 : size > 400 ? 40 : 30}
           height={size > 500 ? 50 : size > 400 ? 40 : 30}
-        />
-        <span className="ml-2 font-bold">Chat-AI</span>
+        /> */}
+        <span className="ml-2 font-bold">Canding - AI</span>
       </div>
       <div className="mobile_device_icon ">
         <Premium />

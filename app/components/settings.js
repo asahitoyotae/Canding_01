@@ -8,6 +8,7 @@ import {
   faBook,
   faBrain,
   faChevronRight,
+  faDiceD20,
   faGlobe,
   faMedal,
   faQuestion,
@@ -36,13 +37,17 @@ const Settings = ({ active, setActive }) => {
       }`}
     >
       <div className="flex items-center justify-center mb-6">
-        <Image
+        <FontAwesomeIcon
+          icon={faDiceD20}
+          style={{ width: "50px", height: "50px", color: "white" }}
+        />
+        {/* <Image
           src="/ChatGPT_white_350x350.png"
           width={50}
           height={50}
           alt="logo"
-        />
-        <span className="text-white text-lg ml-3">Chat-AI</span>
+        /> */}
+        <span className="text-white text-lg ml-3 font-bold">Canding - AI</span>
       </div>
       <p className="text-gray-200 ml-2 mb-1 w-full text-left">Settings</p>
       <ul className="flex justify-center flex-col items-center w-full rounded-xl mb-3">

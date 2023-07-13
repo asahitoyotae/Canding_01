@@ -17,7 +17,7 @@ nav {
   justify-content: center;
   gap: 1.3rem;
   position: absolute;
-  bottom: 5px;
+  bottom: 10px;
   right: 15px;
   cursor: pointer;
   order: 1;
@@ -137,7 +137,7 @@ nav {
     color: rgb(236, 236, 236);
     position: absolute;
     left: 15px;
-    bottom: 5px;
+    bottom: 10px;
     visibility: visible;
     display: flex;
     justify-content: center;
