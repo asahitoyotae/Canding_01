@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 import chatStore from "./store/conversation/store";
 import jwt from "jsonwebtoken";
 import paymentStore from "./payment/storePayment";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faDiceD20 } from "@fortawesome/free-solid-svg-icons";
 
 export default function Home() {
   const [response, setResponse] = useState({});
@@ -58,14 +60,25 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center pt-24 px-2 relative">
-      <div className="mt-9 mb-3 px-4 py-1 text-black font-bold bg-gray-300 rounded-md">
+      <FontAwesomeIcon
+        icon={faDiceD20}
+        style={{
+          width: "60px",
+          height: "60px",
+          color: "rgb(58, 58, 58)",
+          marginTop: "30px",
+        }}
+      />
+      <p className="font-bold text-center text-xl">Canding</p>
+      <p className=" text-center text-sm">Your daily AI Writing Asistant</p>
+      <div className="mt-3 mb-3 px-4 py-1 text-black  border rounded-md">
         Examples
       </div>
-      <div className="examples_page px-4 py-1 text-white mb-3 rounded-md">
+      <div className="text-gray-500 px-4 py-1 text-center mb-3 rounded-md border">
         What are the ethical considerations surrounding aggressive tax avoidance
         and evasion schemes?
       </div>
-      <div className="examples_page px-4 py-1 text-white mb-3 rounded-md">
+      <div className="text-gray-500 px-4 py-1  text-center mb-3 rounded-md border">
         Write a function in javascript that fetch data from a public API.
       </div>
       <p className="mb-6 rounded-md bg-orange-500 px-4 py-1 text-white text-center">
