@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { faChevronRight, faDiceD20 } from "@fortawesome/free-solid-svg-icons";
 import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
 
 const Report = ({ showReportFrom, setshowReportForm }) => {
@@ -63,6 +63,10 @@ const Report = ({ showReportFrom, setshowReportForm }) => {
         showReportFrom ? "terms_active" : "terms_inactive"
       } flex flex-col items-center justify-center`}
     >
+      <FontAwesomeIcon
+        icon={faDiceD20}
+        style={{ width: "55px", height: "55px", color: "white" }}
+      />
       <h2 className="text-lg font-bold my-4">
         Report Issue or Give us Feedback
       </h2>

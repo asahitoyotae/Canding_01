@@ -228,7 +228,7 @@
 
 .terms_and_conditions {
   position: fixed;
-  z-index: 14;
+  z-index: 25;
   top: 0;
   background-color: rgb(41, 41, 41);
   overflow-y: auto;
@@ -239,6 +239,13 @@
   padding-bottom: 100px;
   text-align: left;
   font-size: 0.8rem;
+}
+.terms_memo {
+  width: 100%;
+  font-size: 0.6rem;
+}
+.terms_memo span {
+  text-decoration: underline;
 }
 .terms_and_conditions li {
   list-style: decimal;

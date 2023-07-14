@@ -69,22 +69,22 @@ export default function Home() {
           marginTop: "30px",
         }}
       />
-      <p className="font-bold text-center text-xl">Canding</p>
-      <p className=" text-center text-sm">Your daily AI Writing Asistant</p>
+      <div className="font-bold text-center text-xl">Canding</div>
+      <div className=" text-center text-sm">Your daily AI Writing Asistant</div>
       <div className="mt-3 mb-3 px-4 py-1 text-black  border rounded-md">
         Examples
       </div>
       <div className="text-gray-500 px-4 py-1 text-center mb-3 rounded-md border">
-        What are the ethical considerations surrounding aggressive tax avoidance
-        and evasion schemes?
+        Write an article about the effects of social media on mental health and
+        well-being.
       </div>
       <div className="text-gray-500 px-4 py-1  text-center mb-3 rounded-md border">
         Write a function in javascript that fetch data from a public API.
       </div>
-      <p className="mb-6 rounded-md bg-orange-500 px-4 py-1 text-white text-center">
+      {/* <p className="rounded-md bg-orange-500 px-4 py-1 text-white text-center">
         this section is for development purpose only,
         {` your screen width is: [${size} px]`}
-      </p>
+      </p> */}
       <Conversations
         setQuery={setQuery}
         setResponse={setResponse}

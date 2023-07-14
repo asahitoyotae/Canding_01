@@ -114,7 +114,8 @@ nav {
     height: 100vh;
     padding: 0 10px;
     border-radius: 0;
-    z-index: 10;
+    z-index: 14;
+    overflow-x: hidden;
   }
   .drop_down li:active {
     background-color: rgb(59, 59, 59);

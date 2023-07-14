@@ -47,7 +47,7 @@ const Settings = ({ active, setActive }) => {
           height={50}
           alt="logo"
         /> */}
-        <span className="text-white text-lg ml-3 font-bold">Canding - AI</span>
+        <span className="text-white text-lg ml-3 font-bold">Canding</span>
       </div>
       <p className="text-gray-200 ml-2 mb-1 w-full text-left">Settings</p>
       <ul className="flex justify-center flex-col items-center w-full rounded-xl mb-3">
@@ -274,12 +274,15 @@ const Settings = ({ active, setActive }) => {
           />
         </button>
       </div>
-      <Terms showTerms={showTerms} setShowTerms={setShowTerms} />
-      <About showAbout={showAbout} setShowAbout={setShowAbout} />
-      <Report
-        showReportFrom={showReportFrom}
-        setshowReportForm={setshowReportForm}
-      />
+
+      {active && <Terms showTerms={showTerms} setShowTerms={setShowTerms} />}
+      {active && <About showAbout={showAbout} setShowAbout={setShowAbout} />}
+      {active && (
+        <Report
+          showReportFrom={showReportFrom}
+          setshowReportForm={setshowReportForm}
+        />
+      )}
     </div>
   );
 };

@@ -14,6 +14,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import React, { useEffect, useState } from "react";
 import paymentStore from "../payment/storePayment";
+import Terms from "./terms";
 //import jwt from "jsonwebtoken";
 var jwt = require("jsonwebtoken");
 
@@ -26,6 +27,8 @@ const Premium = () => {
   const [amount, setAmount] = useState(17);
 
   const {
+    setShowTerms,
+    showTerms,
     choosenService,
     setService,
     setToken,
@@ -96,6 +99,7 @@ const Premium = () => {
           height: size > 500 ? "40px" : size > 400 ? "30px" : "20px",
         }}
       />
+
       <div
         className={`overflow-y-auto shopping_container ${
           showPaypal == true ? "shopping_active" : "shopping_inactive"
@@ -165,6 +169,17 @@ const Premium = () => {
           </div>
           <div className="price">17.00 usd</div>
         </div>
+        <p className="terms_memo">
+          by proceeding to payment you accept our{" "}
+          <span
+            onClick={() => {
+              console.log("terms");
+              setShowTerms(true);
+            }}
+          >
+            Terms and Conditions
+          </span>
+        </p>
         <div className="mt-7 overflow-y-auto">
           <PayPalScriptProvider
             options={{
@@ -247,6 +262,9 @@ const Premium = () => {
           </button>
         </div>
       </div>
+      {showPaypal && (
+        <Terms showTerms={showTerms} setShowTerms={setShowTerms} />
+      )}
     </div>
   );
 };
