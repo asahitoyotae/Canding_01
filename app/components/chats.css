@@ -185,7 +185,8 @@
 }
 .shopping_container {
   width: 100%;
-  min-height: fit-content;
+  height: fit-content;
+  min-height: 100vh;
   background-color: rgb(60, 60, 60);
   padding: 10px;
   display: flex;
