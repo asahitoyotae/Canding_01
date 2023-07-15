@@ -101,7 +101,7 @@ const Premium = () => {
       />
 
       <div
-        className={`overflow-y-auto shopping_container ${
+        className={`shopping_container ${
           showPaypal == true ? "shopping_active" : "shopping_inactive"
         }`}
       >
@@ -180,7 +180,7 @@ const Premium = () => {
             Terms and Conditions
           </span>
         </p>
-        <div className="mt-7 overflow-y-auto">
+        <div className="mt-7 w-full">
           <PayPalScriptProvider
             options={{
               clientId:
@@ -188,7 +188,7 @@ const Premium = () => {
             }}
           >
             <PayPalButtons
-              style={{ layout: "vertical" }}
+              style={{ layout: "vertical", color: "white" }}
               disabled={false}
               forceReRender={[amount]}
               fundingSource={undefined}

@@ -176,18 +176,18 @@
   overflow-y: auto;
 }
 .shopping_container {
+  overflow-y: auto;
   position: fixed;
   top: 0;
   width: 100vw;
   height: 100vh;
   z-index: 14;
   background-color: rgb(60, 60, 60);
-  padding: 20px 10px;
-  display: flex;
+  padding: 0 10px;
+  /* display: flex; */
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  overflow-y: auto;
 }
 .shopping_active {
   visibility: visible;
