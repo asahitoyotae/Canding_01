@@ -20,56 +20,56 @@ const Search = ({ setResponse, setQuery }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const checkingValidity = await new Promise((resolve, reject) => {
-      const isPremium = localStorage.getItem("__validity__");
+    // const checkingValidity = await new Promise((resolve, reject) => {
+    //   const isPremium = localStorage.getItem("__validity__");
 
-      if (!isPremium) {
-        const isNewUser = localStorage.getItem("__new-user-validity__");
-        jwt.verify(
-          isNewUser,
-          process.env.NEXT_PUBLIC_AUTH_KEY_VALID,
-          (err, dec) => {
-            if (err) {
-              resolve(false);
-            } else {
-              if (dec.numberOfRequest < 1 || dec.numberOfRequest > 3) {
-                resolve(false);
-              } else {
-                const newNumb = dec.numberOfRequest - 1;
-                localStorage.setItem(
-                  "__new-user-validity__",
-                  jwt.sign(
-                    { numberOfRequest: newNumb },
-                    process.env.NEXT_PUBLIC_AUTH_KEY_VALID,
-                    { expiresIn: "7d" }
-                  )
-                );
-                resolve(true);
-              }
-            }
-          }
-        );
-      } else {
-        jwt.verify(
-          isPremium,
-          process.env.NEXT_PUBLIC_AUTH_KEY_VALID,
-          (error, decoded) => {
-            if (error) {
-              console.log("error in process premium token");
-              resolve(false);
-            } else {
-              resolve(true);
-            }
-          }
-        );
-      }
-    });
+    //   if (!isPremium) {
+    //     const isNewUser = localStorage.getItem("__new-user-validity__");
+    //     jwt.verify(
+    //       isNewUser,
+    //       process.env.NEXT_PUBLIC_AUTH_KEY_VALID,
+    //       (err, dec) => {
+    //         if (err) {
+    //           resolve(false);
+    //         } else {
+    //           if (dec.numberOfRequest < 1 || dec.numberOfRequest > 3) {
+    //             resolve(false);
+    //           } else {
+    //             const newNumb = dec.numberOfRequest - 1;
+    //             localStorage.setItem(
+    //               "__new-user-validity__",
+    //               jwt.sign(
+    //                 { numberOfRequest: newNumb },
+    //                 process.env.NEXT_PUBLIC_AUTH_KEY_VALID,
+    //                 { expiresIn: "7d" }
+    //               )
+    //             );
+    //             resolve(true);
+    //           }
+    //         }
+    //       }
+    //     );
+    //   } else {
+    //     jwt.verify(
+    //       isPremium,
+    //       process.env.NEXT_PUBLIC_AUTH_KEY_VALID,
+    //       (error, decoded) => {
+    //         if (error) {
+    //           console.log("error in process premium token");
+    //           resolve(false);
+    //         } else {
+    //           resolve(true);
+    //         }
+    //       }
+    //     );
+    //   }
+    // });
 
-    console.log("check validity", checkingValidity);
+    // console.log("check validity", checkingValidity);
 
-    if (!checkingValidity) {
-      return setShowPaypal(true);
-    }
+    // if (!checkingValidity) {
+    //   return setShowPaypal(true);
+    // }
 
     if (e.target.search.value.trim().length < 1 || animate) {
       return;
@@ -91,7 +91,7 @@ const Search = ({ setResponse, setQuery }) => {
         return e.thread_id == currentThreadId;
       });
       for (let i = currentThread.conv.length - 1; i >= 0; i--) {
-        if (message.length < 9) {
+        if (message.length < 5) {
           message.unshift(currentThread.conv[i]);
         }
       }
@@ -113,7 +113,7 @@ const Search = ({ setResponse, setQuery }) => {
     } else {
       setResponse({
         role: "assistant",
-        content: `An Error Occured! ${res.error || res}`,
+        content: `Network Error!`,
       });
     }
   };

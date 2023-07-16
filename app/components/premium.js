@@ -21,7 +21,7 @@ var jwt = require("jsonwebtoken");
 const Premium = () => {
   const [size, setSize] = useState();
   const [userIcon, setUserIcon] = useState({
-    icon: faCartShopping,
+    icon: faMedal,
     color: "#ffc439",
   });
   const [amount, setAmount] = useState(17);
@@ -36,37 +36,38 @@ const Premium = () => {
     showPaypal,
   } = paymentStore();
 
-  useEffect(() => {
-    setSize(window.innerWidth);
-    const isPaying = localStorage.getItem("__validity__");
-    if (isPaying) {
-      jwt.verify(
-        isPaying,
-        process.env.NEXT_PUBLIC_AUTH_KEY_VALID,
-        (err, dec) => {
-          if (err) {
-            setUserIcon({
-              icon: faCartShopping,
-              color: "#ffc439",
-            });
-          } else {
-            setUserIcon({
-              icon: faMedal,
-              color: "#f98433",
-            });
-          }
-        }
-      );
-    } else {
-      setUserIcon({
-        icon: faCartShopping,
-        color: "#ffc439",
-      });
-    }
-  }, [showPaypal]);
+  // useEffect(() => {
+  //   setSize(window.innerWidth);
+  //   const isPaying = localStorage.getItem("__validity__");
+  //   if (isPaying) {
+  //     jwt.verify(
+  //       isPaying,
+  //       process.env.NEXT_PUBLIC_AUTH_KEY_VALID,
+  //       (err, dec) => {
+  //         if (err) {
+  //           setUserIcon({
+  //             icon: faCartShopping,
+  //             color: "#ffc439",
+  //           });
+  //         } else {
+  //           setUserIcon({
+  //             icon: faMedal,
+  //             color: "#f98433",
+  //           });
+  //         }
+  //       }
+  //     );
+  //   } else {
+  //     setUserIcon({
+  //       icon: faCartShopping,
+  //       color: "#ffc439",
+  //     });
+  //   }
+  // }, [showPaypal]);
   return (
     <div
       onClick={() => {
+        return;
         const isPaying = localStorage.getItem("__validity__");
         if (isPaying) {
           jwt.verify(
@@ -108,7 +109,7 @@ const Premium = () => {
         <div className="shopping_container ">
           <div
             className="grid grid-cols-9 gap-4 duration-500 w-full py-4 px-3 text-black my-3 rounded-md ${
-            bg-gray-100"
+            bg-white"
           >
             <div className="col-span-2 flex items-center justify-center">
               <FontAwesomeIcon
@@ -125,7 +126,7 @@ const Premium = () => {
           <div
             onClick={() => setAmount(5)}
             className={`relative grid grid-cols-9 gap-4 duration-500 w-full py-4 px-3 text-black my-3 rounded-md ${
-              amount == 5 ? "bg-orange-200" : "bg-gray-100"
+              amount == 5 ? "bg-orange-200" : "bg-white"
             }`}
           >
             <div className="col-span-2 flex justify-center">
@@ -149,7 +150,7 @@ const Premium = () => {
           <div
             onClick={() => setAmount(17)}
             className={`relative grid grid-cols-9 gap-4 duration-500 w-full py-4 px-3 text-black my-3 rounded-md ${
-              amount == 17 ? "bg-orange-200" : "bg-gray-100"
+              amount == 17 ? "bg-orange-200" : "bg-white"
             }`}
           >
             <div className="col-span-2 flex justify-center flex-col">

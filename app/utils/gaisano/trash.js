@@ -20,12 +20,16 @@ export const deleteTrash = async (messages, version) => {
     model: version.version,
     messages: messages,
     temperature: 0.7,
-    max_tokens: 500,
+    max_tokens: 1400,
   };
 
   try {
-    const res = await axios.post(url, body, { headers: headers });
-    return res.data;
+    const response = await axios.post(url, body, {
+      headers: headers,
+      timeout: 30000,
+    });
+
+    return response.data;
   } catch (error) {
     console.log("error in fetch", error);
     return error.message;
