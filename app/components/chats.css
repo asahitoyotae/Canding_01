@@ -304,6 +304,7 @@
   background-color: rgb(60, 60, 60);
   border: 1px solid rgb(186, 186, 186);
   border-radius: 5px;
+  resize: none;
 }
 .report_form button {
   background-color: rgb(255, 255, 255);

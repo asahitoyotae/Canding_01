@@ -40,13 +40,13 @@ const Recent = ({ active, setActive }) => {
     }, 500);
   };
   const days = [
+    "Sunday",
     "Monday",
     "Tuesday",
     "Wednesday",
     "Thursday",
     "Friday",
     "Saturday",
-    "Sunday",
   ];
   const months = [
     "January",
@@ -108,7 +108,7 @@ const Recent = ({ active, setActive }) => {
               }`}
               style={{ top: `${70 + 75 * index}px` }}
             >
-              <p>{`${days[date.getDay() - 1]} ${date.getFullYear()}-${
+              <p>{`${days[date.getDay()]} ${date.getFullYear()}-${
                 months[date.getMonth() + 1]
               }-${date.getDate()}   (${date.getHours()}:${date.getMinutes()}:${date.getSeconds()})H`}</p>
               <p>{e.title}</p>

@@ -91,7 +91,8 @@ const Search = ({ setResponse, setQuery }) => {
         return e.thread_id == currentThreadId;
       });
       for (let i = currentThread.conv.length - 1; i >= 0; i--) {
-        if (message.length < 5) {
+        if (message.length < 9) {
+          message.forEach((item) => {});
           message.unshift(currentThread.conv[i]);
         }
       }

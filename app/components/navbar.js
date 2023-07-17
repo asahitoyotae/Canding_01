@@ -17,7 +17,14 @@ import Premium from "./premium";
 import Image from "next/image";
 
 const Navbar = () => {
+  const [hacker, setHacker] = useState(false);
   useEffect(() => {
+    const hacker = window.innerWidth;
+
+    if (hacker > 654) {
+      setHacker(true);
+      return;
+    }
     setSize(window.innerWidth);
   }, []);
   const [active, setActive] = useState(false);
@@ -25,6 +32,11 @@ const Navbar = () => {
   useEffect(() => {
     setSize(window.innerWidth);
   }, []);
+
+  if (hacker) {
+    return;
+  }
+
   return (
     <nav className="z-10 text-black ">
       <div className="mobile_sidebar">

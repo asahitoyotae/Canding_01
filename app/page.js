@@ -16,33 +16,53 @@ export default function Home() {
   const { setAllThreads, setCurrentThreadId } = chatStore();
   const [size, setSize] = useState();
   const { showPaypal, setShowPaypal } = paymentStore();
+  const [hacker, setHacker] = useState(false);
 
   useEffect(() => {
-    const newUser = localStorage.getItem("__new-user-validity__");
-    if (!newUser) {
-      const forNewUserToken = jwt.sign(
-        { numberOfRequest: 3 },
-        process.env.NEXT_PUBLIC_AUTH_KEY_VALID,
-        { expiresIn: "7d" },
-        (error, token) => {
-          if (error) {
-            localStorage.setItem(
-              "__new-user-validity__",
-              jwt.sign(
-                { numberOfRequest: 3 },
-                process.env.NEXT_PUBLIC_AUTH_KEY_VALID,
-                { expiresIn: "7d" }
-              )
-            );
-          } else {
-            localStorage.setItem("__new-user-validity__", token);
-          }
-        }
-      );
-    } else if (newUser) {
-      const premiumUser = localStorage.getItem("__validity__");
-      premiumUser ? "" : setShowPaypal(true);
+    const hacker = window.innerWidth;
+
+    if (hacker > 654) {
+      setHacker(true);
+      return;
     }
+
+    // const paidUser = localStorage.getItem("__validity__");
+    // if (paidUser) {
+    //   jwt.verify(
+    //     paidUser,
+    //     process.env.NEXT_PUBLIC_AUTH_KEY_VALID,
+    //     (error, decoded) => {
+    //       if (error) {
+    //         setShowPaypal(true);
+    //       }
+    //     }
+    //   );
+    // } else if (!paidUser) {
+    //   const newUser = localStorage.getItem("__new-user-validity__");
+    //   if (!newUser) {
+    //     const forNewUserToken = jwt.sign(
+    //       { numberOfRequest: 3 },
+    //       process.env.NEXT_PUBLIC_AUTH_KEY_VALID,
+    //       { expiresIn: "7d" },
+    //       (error, token) => {
+    //         if (error) {
+    //           localStorage.setItem(
+    //             "__new-user-validity__",
+    //             jwt.sign(
+    //               { numberOfRequest: 3 },
+    //               process.env.NEXT_PUBLIC_AUTH_KEY_VALID,
+    //               { expiresIn: "7d" }
+    //             )
+    //           );
+    //         } else {
+    //           localStorage.setItem("__new-user-validity__", token);
+    //         }
+    //       }
+    //     );
+    //   } else if (newUser) {
+    //     setShowPaypal(true);
+    //   }
+    // }
 
     setSize(window.innerWidth);
     if (window.innerWidth > 500) {
@@ -57,6 +77,10 @@ export default function Home() {
     storage && setAllThreads(storage);
     id && setCurrentThreadId(id);
   }, []);
+
+  if (hacker) {
+    return;
+  }
 
   return (
     <main className="flex min-h-screen flex-col items-center pt-24 px-2 relative">
