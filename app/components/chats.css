@@ -86,6 +86,7 @@
   .search_bar form textarea {
     font-size: var(--global-font-size);
     margin: 2px 0;
+    height: fit-content;
   }
 }
 .recent {

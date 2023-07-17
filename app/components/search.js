@@ -77,7 +77,7 @@ const Search = ({ setResponse, setQuery }) => {
 
     const userQuery = e.target.search.value;
     e.target.search.value = "";
-    e.target.search.style.height = "20px";
+    e.target.search.style.height = "fit-content";
 
     setQuery({ role: "user", content: userQuery });
 
@@ -91,8 +91,12 @@ const Search = ({ setResponse, setQuery }) => {
         return e.thread_id == currentThreadId;
       });
       for (let i = currentThread.conv.length - 1; i >= 0; i--) {
-        if (message.length < 9) {
-          message.forEach((item) => {});
+        let totalWords = 0;
+        message.forEach((item) => {
+          totalWords += item.content.split(" ").length;
+        });
+        if (message.length < 9 && totalWords < 2000) {
+          console.log(totalWords);
           message.unshift(currentThread.conv[i]);
         }
       }
