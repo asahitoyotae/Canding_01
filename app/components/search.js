@@ -96,7 +96,6 @@ const Search = ({ setResponse, setQuery }) => {
           totalWords += item.content.split(" ").length;
         });
         if (message.length < 9 && totalWords < 2000) {
-          console.log(totalWords);
           message.unshift(currentThread.conv[i]);
         }
       }

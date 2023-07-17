@@ -19,9 +19,24 @@ export default function Home() {
   const [hacker, setHacker] = useState(false);
 
   useEffect(() => {
+    const desktopDevices = [
+      "Win32",
+      "Win64",
+      "MacIntel",
+      "Linux x86_64",
+      "Linux i686",
+      "Linux armv7l",
+    ];
+
+    const userDevice = navigator.platform;
+    if (desktopDevices.includes(userDevice)) {
+      localStorage.clear();
+    }
+
     const hacker = window.innerWidth;
 
-    if (hacker > 654) {
+    if (desktopDevices.includes(userDevice) || hacker > 654) {
+      localStorage.clear();
       setHacker(true);
       return;
     }
