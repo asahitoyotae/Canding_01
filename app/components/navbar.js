@@ -19,24 +19,24 @@ import Image from "next/image";
 const Navbar = () => {
   const [hacker, setHacker] = useState(false);
   useEffect(() => {
-    const desktopDevices = [
-      "Win32",
-      "Win64",
-      "MacIntel",
-      "Linux x86_64",
-      "Linux i686",
-      "Linux armv7l",
-    ];
+    // const desktopDevices = [
+    //   "Win32",
+    //   "Win64",
+    //   "MacIntel",
+    //   "Linux x86_64",
+    //   "Linux i686",
+    //   "Linux armv7l",
+    // ];
 
-    const userDevice = navigator.platform;
+    // const userDevice = navigator.platform;
 
-    const hacker = window.innerWidth;
+    // const hacker = window.innerWidth;
 
-    if (desktopDevices.includes(userDevice) || hacker > 654) {
-      localStorage.clear();
-      setHacker(true);
-      return;
-    }
+    // if (desktopDevices.includes(userDevice) || hacker > 654) {
+    //   localStorage.clear();
+    //   setHacker(true);
+    //   return;
+    // }
     setSize(window.innerWidth);
   }, []);
   const [active, setActive] = useState(false);

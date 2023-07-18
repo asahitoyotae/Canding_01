@@ -5,7 +5,10 @@ import Typewriter from "typewriter-effect";
 
 import "./chats.css";
 import "./thinking.css";
+import "./choices.css";
 import chatStore from "../store/conversation/store";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck, faCopy } from "@fortawesome/free-solid-svg-icons";
 
 const Conversations = ({ query, response, setQuery, setResponse }) => {
   const {
@@ -137,6 +140,20 @@ const Conversations = ({ query, response, setQuery, setResponse }) => {
     }, 10);
   }, [query.content, currentThreadId]);
 
+  const [copied, setCopied] = useState(false);
+  const [copiedItem, setCopiedItem] = useState();
+  const handleCopyCode = (text, item) => {
+    navigator.clipboard
+      .write(text)
+      .then(() => {
+        setCopied(true);
+        setCopiedItem(item);
+      })
+      .catch(() => {
+        setCopied(false);
+      });
+  };
+
   return (
     <div className="conversations text-black">
       {conversation.length > 0 &&
@@ -187,8 +204,34 @@ const Conversations = ({ query, response, setQuery, setResponse }) => {
                         return (
                           <pre
                             key={`code-${ind}`}
-                            className="px-2 py-1 rounded-md bg-gray-600 text-white overflow-x-auto my-1"
+                            className="code_container relative px-2 py-1 rounded-md bg-gray-600 text-white overflow-x-auto my-1"
                           >
+                            <span
+                              className="copy_icon"
+                              onClick={() =>
+                                handleCopyCode(
+                                  text.trim(),
+                                  `code-${ind}-${index}`
+                                )
+                              }
+                            >
+                              <FontAwesomeIcon
+                                icon={
+                                  copied && copiedItem == `code-${ind}-${index}`
+                                    ? faCheck
+                                    : faCopy
+                                }
+                                style={{
+                                  color:
+                                    copied &&
+                                    copiedItem == `code-${ind}-${index}`
+                                      ? "light-green"
+                                      : "white",
+                                  width: "16px",
+                                  height: "16px",
+                                }}
+                              />
+                            </span>
                             <code>{text.trim()}</code>
                           </pre>
                         );

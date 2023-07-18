@@ -24,3 +24,11 @@
   visibility: hidden;
   transition: 0.5s ease-in-out;
 }
+.code_container {
+  position: relative;
+}
+.copy_icon {
+  position: sticky;
+  top: 5px;
+  left: 95%;
+}
