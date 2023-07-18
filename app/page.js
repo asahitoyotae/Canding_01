@@ -35,11 +35,11 @@ export default function Home() {
 
     const hacker = window.innerWidth;
 
-    // if (desktopDevices.includes(userDevice) || hacker > 654) {
-    //   localStorage.clear();
-    //   setHacker(true);
-    //   //return;
-    // }
+    if (desktopDevices.includes(userDevice) || hacker > 654) {
+      localStorage.clear();
+      setHacker(true);
+      return;
+    }
 
     // const paidUser = localStorage.getItem("__validity__");
     // if (paidUser) {
@@ -93,10 +93,6 @@ export default function Home() {
     id && setCurrentThreadId(id);
   }, []);
 
-  if (hacker) {
-    return <div></div>;
-  }
-
   const [copiedSample, setCopiedSample] = useState();
   const handleCopySample = (text, sample) => {
     navigator.clipboard
@@ -108,6 +104,10 @@ export default function Home() {
         console.log("Error! browser does not allow copy.");
       });
   };
+
+  if (hacker) {
+    return <div></div>;
+  }
 
   return (
     <main className="flex min-h-screen flex-col items-center pt-24 px-2 relative">
