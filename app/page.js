@@ -99,6 +99,7 @@ export default function Home() {
       .writeText(text)
       .then(() => {
         setCopiedSample(sample);
+        NativeAndroid.copyToClipboard(text);
       })
       .catch(() => {
         console.log("Error! browser does not allow copy.");
