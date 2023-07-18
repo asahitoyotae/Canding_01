@@ -144,7 +144,7 @@ const Conversations = ({ query, response, setQuery, setResponse }) => {
   const [copiedItem, setCopiedItem] = useState();
   const handleCopyCode = (text, item) => {
     navigator.clipboard
-      .write(text)
+      .writeText(text)
       .then(() => {
         setCopied(true);
         setCopiedItem(item);
