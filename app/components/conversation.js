@@ -148,10 +148,9 @@ const Conversations = ({ query, response, setQuery, setResponse }) => {
       .then(() => {
         setCopied(true);
         setCopiedItem(item);
-        console.log("copied to clipboard successfully ");
       })
       .catch(() => {
-        console.log("error in copying to clipboard");
+        console.log("error in copying, Browser does not allow copy!");
       });
   };
 
@@ -198,6 +197,35 @@ const Conversations = ({ query, response, setQuery, setResponse }) => {
                                     );
                                   }
                                 })}
+                              {ind == item.content.split("```").length - 1 && (
+                                <span
+                                  onClick={() =>
+                                    handleCopyCode(
+                                      item.content.trim(),
+                                      `text-${ind}-${index}`
+                                    )
+                                  }
+                                  className=" ml-4"
+                                >
+                                  <FontAwesomeIcon
+                                    icon={
+                                      copied &&
+                                      copiedItem == `text-${ind}-${index}`
+                                        ? faCheck
+                                        : faCopy
+                                    }
+                                    style={{
+                                      widht: "16px",
+                                      height: "16px",
+                                      color:
+                                        copied &&
+                                        copiedItem == `text-${ind}-${index}`
+                                          ? "lightgreen"
+                                          : "rgb(89, 89, 89)",
+                                    }}
+                                  />
+                                </span>
+                              )}
                             </p>
                           </pre>
                         );
@@ -226,7 +254,7 @@ const Conversations = ({ query, response, setQuery, setResponse }) => {
                                   color:
                                     copied &&
                                     copiedItem == `code-${ind}-${index}`
-                                      ? "light-green"
+                                      ? "lightgreen"
                                       : "white",
                                   width: "16px",
                                   height: "16px",
