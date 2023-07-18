@@ -148,9 +148,10 @@ const Conversations = ({ query, response, setQuery, setResponse }) => {
       .then(() => {
         setCopied(true);
         setCopiedItem(item);
+        console.log("copied to clipboard successfully ");
       })
       .catch(() => {
-        setCopied(false);
+        console.log("error in copying to clipboard");
       });
   };
 
