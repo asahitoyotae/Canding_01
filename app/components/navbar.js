@@ -32,11 +32,12 @@ const Navbar = () => {
 
     const hacker = window.innerWidth;
 
-    if (desktopDevices.includes(userDevice) || hacker > 654) {
-      localStorage.clear();
-      setHacker(true);
-      return;
-    }
+    // if (desktopDevices.includes(userDevice) || hacker > 654) {
+    //   localStorage.clear();
+    //   setHacker(true);
+    //   return;
+    // }
+
     setSize(window.innerWidth);
   }, []);
   const [active, setActive] = useState(false);
@@ -46,7 +47,7 @@ const Navbar = () => {
   }, []);
 
   if (hacker) {
-    return;
+    return <div></div>;
   }
 
   return (

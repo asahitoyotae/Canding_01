@@ -35,11 +35,11 @@ export default function Home() {
 
     const hacker = window.innerWidth;
 
-    if (desktopDevices.includes(userDevice) || hacker > 654) {
-      localStorage.clear();
-      setHacker(true);
-      return;
-    }
+    // if (desktopDevices.includes(userDevice) || hacker > 654) {
+    //   localStorage.clear();
+    //   setHacker(true);
+    //   //return;
+    // }
 
     // const paidUser = localStorage.getItem("__validity__");
     // if (paidUser) {
@@ -94,7 +94,7 @@ export default function Home() {
   }, []);
 
   if (hacker) {
-    return;
+    return <div></div>;
   }
 
   const [copiedSample, setCopiedSample] = useState();
