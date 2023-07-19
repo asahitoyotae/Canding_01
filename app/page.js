@@ -94,16 +94,12 @@ export default function Home() {
   }, []);
 
   const [copiedSample, setCopiedSample] = useState();
-  const handleCopySample = (text, sample) => {
-    navigator.clipboard
-      .writeText(text)
-      .then(() => {
-        setCopiedSample(sample);
-        NativeAndroid.copyToClipboard(text);
-      })
-      .catch(() => {
-        console.log("Error! browser does not allow copy.");
-      });
+  const handleCopySample = async (text, sample) => {
+    try {
+      Android.copyToClipboard(text);
+    } catch (error) {
+      alert("error in copying text");
+    }
   };
 
   if (hacker) {
