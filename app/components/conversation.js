@@ -157,9 +157,9 @@ const Conversations = ({ query, response, setQuery, setResponse }) => {
   };
 
   const handleSnap = () => {
-    setAnimating(false);
     setAnimate(false);
     setTimeout(() => {
+      setAnimating(false);
       const threads = [...allThreads];
       threads[0].conv.push(response);
       localStorage.setItem("allThreads", JSON.stringify(threads));
