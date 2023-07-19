@@ -54,3 +54,24 @@
   visibility: hidden;
   transition: 0.9s ease-in-out;
 }
+
+.snap_result {
+  position: fixed;
+  bottom: 94px;
+  left: calc(50% - width);
+  background-color: rgb(244, 244, 244);
+  border: 1px solid rgb(58, 58, 58, 0.3);
+  border-radius: 5px;
+  width: fit-content;
+  padding: 0 5px;
+  height: 25px;
+  z-index: 15;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  color: rgb(57, 57, 57);
+}
+.snap_result span {
+  padding-bottom: 2px;
+}

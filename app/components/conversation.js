@@ -8,7 +8,7 @@ import "./thinking.css";
 import "./choices.css";
 import chatStore from "../store/conversation/store";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck, faCopy } from "@fortawesome/free-solid-svg-icons";
+import { faCheck, faCopy, faStop } from "@fortawesome/free-solid-svg-icons";
 
 const Conversations = ({ query, response, setQuery, setResponse }) => {
   const {
@@ -154,6 +154,18 @@ const Conversations = ({ query, response, setQuery, setResponse }) => {
         setAlert(false);
       }, 2000);
     }
+  };
+
+  const handleSnap = () => {
+    setAnimating(false);
+    setAnimate(false);
+    setTimeout(() => {
+      const threads = [...allThreads];
+      threads[0].conv.push(response);
+      localStorage.setItem("allThreads", JSON.stringify(threads));
+      setAllThreads(threads);
+      setResponse({});
+    }, 0);
   };
 
   return (
@@ -309,6 +321,16 @@ const Conversations = ({ query, response, setQuery, setResponse }) => {
       {thinking && (
         <div className="flex w-full mb-2">
           <div className="assistant_chat flex gap-1">{dots}</div>
+        </div>
+      )}
+      {animating && (
+        <div onClick={handleSnap} className="snap_result">
+          <FontAwesomeIcon
+            icon={faStop}
+            style={{ width: "16px", height: "16px", color: "rgb(57, 57, 57)" }}
+          />
+
+          <span>snap</span>
         </div>
       )}
       <div className="mb-32" ref={veiwref}></div>
