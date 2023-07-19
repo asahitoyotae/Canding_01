@@ -7,6 +7,10 @@ const chatStore = create((set, get) => ({
   gptVersion: "gpt-3.5-turbo",
   language: "English",
   prime: "sk__wk__TW",
+  alert: false,
+  setAlert: (bool) => {
+    set({ alert: bool });
+  },
   setLanguage: (lang) => {
     set({ language: lang });
   },

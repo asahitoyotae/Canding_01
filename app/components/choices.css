@@ -32,3 +32,25 @@
   top: 5px;
   left: 95%;
 }
+.alert_container {
+  position: fixed;
+  bottom: 15%;
+  left: calc(50% - width);
+  z-index: 16;
+  background-color: rgb(77, 77, 77);
+  padding: 3px 7px;
+  color: white;
+  font-size: 0.8rem;
+  border-radius: 6px;
+}
+.alert_active {
+  opacity: 1;
+  visibility: visible;
+  transition: 0.9s ease-in-out;
+}
+
+.alert_inactive {
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.9s ease-in-out;
+}

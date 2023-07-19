@@ -9,11 +9,12 @@ import jwt from "jsonwebtoken";
 import paymentStore from "./payment/storePayment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faCopy, faDiceD20 } from "@fortawesome/free-solid-svg-icons";
+import Alert from "./components/copyalert";
 
 export default function Home() {
   const [response, setResponse] = useState({});
   const [query, setQuery] = useState({});
-  const { setAllThreads, setCurrentThreadId } = chatStore();
+  const { setAllThreads, setCurrentThreadId, alert, setAlert } = chatStore();
   const [size, setSize] = useState();
   const { showPaypal, setShowPaypal } = paymentStore();
   const [hacker, setHacker] = useState(false);
@@ -97,8 +98,15 @@ export default function Home() {
   const handleCopySample = async (text, sample) => {
     try {
       Android.copyToClipboard(text);
+      setCopiedSample(sample);
+      setTimeout(() => {
+        setCopiedSample(null);
+      }, 4000);
     } catch (error) {
-      alert("error in copying text");
+      setAlert(true);
+      setTimeout(() => {
+        setAlert(false);
+      }, 2000);
     }
   };
 
@@ -176,6 +184,7 @@ export default function Home() {
         response={response}
       />
       <Search setQuery={setQuery} setResponse={setResponse} />
+      <Alert />
     </main>
   );
 }

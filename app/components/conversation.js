@@ -17,6 +17,7 @@ const Conversations = ({ query, response, setQuery, setResponse }) => {
     setAllThreads,
     setCurrentThreadId,
     setAnimate,
+    setAlert,
   } = chatStore();
   const [conversation, setConversation] = useState([]);
   const [currentChat, setCurrentChat] = useState(null);
@@ -143,15 +144,16 @@ const Conversations = ({ query, response, setQuery, setResponse }) => {
   const [copied, setCopied] = useState(false);
   const [copiedItem, setCopiedItem] = useState();
   const handleCopyCode = (text, item) => {
-    navigator.clipboard
-      .writeText(text)
-      .then(() => {
-        setCopied(true);
-        setCopiedItem(item);
-      })
-      .catch(() => {
-        console.log("error in copying, Browser does not allow copy!");
-      });
+    try {
+      Android.copyToClipboard(text);
+      setCopied(true);
+      setCopiedItem(item);
+    } catch (error) {
+      setAlert(true);
+      setTimeout(() => {
+        setAlert(false);
+      }, 2000);
+    }
   };
 
   return (
