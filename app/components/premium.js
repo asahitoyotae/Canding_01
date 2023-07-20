@@ -185,7 +185,7 @@ const Premium = () => {
             <PayPalScriptProvider
               options={{
                 clientId:
-                  "AQa2AA9WcI2rHiUzdfZ1uRnqQdMf0KaKl3tQ-P3ELuvUBS-ca6gN8_Hz8iZbonq9pMOE9sMZUTzRqvSP",
+                  "ARsfD81WFq3dpvnpBx_MN1HKk8I-bTIeoKzH5AKxFJPzZOIpOltQLUx5HdX_H5qf7d2nsXcMqjE3QZBJ",
               }}
             >
               <PayPalButtons
