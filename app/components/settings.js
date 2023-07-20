@@ -139,7 +139,7 @@ const Settings = ({ active, setActive }) => {
           </div>
         </li>
         <li
-          //onClick={() => setShowPaypal(true)}
+          onClick={() => setShowPaypal(true)}
           className="flex justify-between w-full p-2 "
         >
           <div className="flex gap-2 items-center justify center ml-2">
@@ -147,7 +147,7 @@ const Settings = ({ active, setActive }) => {
               icon={faMedal}
               style={{ width: "15px", height: "15px" }}
             />{" "}
-            <span>GPT Powered</span>
+            <span>Get Premium</span>
           </div>{" "}
           <div>
             <span className="ml-3 text-lg">
