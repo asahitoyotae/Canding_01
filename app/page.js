@@ -42,43 +42,43 @@ export default function Home() {
     //   return;
     // }
 
-    // const paidUser = localStorage.getItem("__validity__");
-    // if (paidUser) {
-    //   jwt.verify(
-    //     paidUser,
-    //     process.env.NEXT_PUBLIC_AUTH_KEY_VALID,
-    //     (error, decoded) => {
-    //       if (error) {
-    //         setShowPaypal(true);
-    //       }
-    //     }
-    //   );
-    // } else if (!paidUser) {
-    //   const newUser = localStorage.getItem("__new-user-validity__");
-    //   if (!newUser) {
-    //     const forNewUserToken = jwt.sign(
-    //       { numberOfRequest: 3 },
-    //       process.env.NEXT_PUBLIC_AUTH_KEY_VALID,
-    //       { expiresIn: "7d" },
-    //       (error, token) => {
-    //         if (error) {
-    //           localStorage.setItem(
-    //             "__new-user-validity__",
-    //             jwt.sign(
-    //               { numberOfRequest: 3 },
-    //               process.env.NEXT_PUBLIC_AUTH_KEY_VALID,
-    //               { expiresIn: "7d" }
-    //             )
-    //           );
-    //         } else {
-    //           localStorage.setItem("__new-user-validity__", token);
-    //         }
-    //       }
-    //     );
-    //   } else if (newUser) {
-    //     setShowPaypal(true);
-    //   }
-    // }
+    const paidUser = localStorage.getItem("__validity__");
+    if (paidUser) {
+      jwt.verify(
+        paidUser,
+        process.env.NEXT_PUBLIC_AUTH_KEY_VALID,
+        (error, decoded) => {
+          if (error) {
+            setShowPaypal(true);
+          }
+        }
+      );
+    } else if (!paidUser) {
+      const newUser = localStorage.getItem("__new-user-validity__");
+      if (!newUser) {
+        const forNewUserToken = jwt.sign(
+          { numberOfRequest: 3 },
+          process.env.NEXT_PUBLIC_AUTH_KEY_VALID,
+          { expiresIn: "7d" },
+          (error, token) => {
+            if (error) {
+              localStorage.setItem(
+                "__new-user-validity__",
+                jwt.sign(
+                  { numberOfRequest: 3 },
+                  process.env.NEXT_PUBLIC_AUTH_KEY_VALID,
+                  { expiresIn: "7d" }
+                )
+              );
+            } else {
+              localStorage.setItem("__new-user-validity__", token);
+            }
+          }
+        );
+      } else if (newUser) {
+        setShowPaypal(true);
+      }
+    }
 
     setSize(window.innerWidth);
     if (window.innerWidth > 500) {

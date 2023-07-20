@@ -21,7 +21,7 @@ var jwt = require("jsonwebtoken");
 const Premium = () => {
   const [size, setSize] = useState();
   const [userIcon, setUserIcon] = useState({
-    icon: faMedal,
+    icon: faCartShopping,
     color: "#ffc439",
   });
   const [amount, setAmount] = useState(17);
@@ -36,38 +36,37 @@ const Premium = () => {
     showPaypal,
   } = paymentStore();
 
-  // useEffect(() => {
-  //   setSize(window.innerWidth);
-  //   const isPaying = localStorage.getItem("__validity__");
-  //   if (isPaying) {
-  //     jwt.verify(
-  //       isPaying,
-  //       process.env.NEXT_PUBLIC_AUTH_KEY_VALID,
-  //       (err, dec) => {
-  //         if (err) {
-  //           setUserIcon({
-  //             icon: faCartShopping,
-  //             color: "#ffc439",
-  //           });
-  //         } else {
-  //           setUserIcon({
-  //             icon: faMedal,
-  //             color: "#f98433",
-  //           });
-  //         }
-  //       }
-  //     );
-  //   } else {
-  //     setUserIcon({
-  //       icon: faCartShopping,
-  //       color: "#ffc439",
-  //     });
-  //   }
-  // }, [showPaypal]);
+  useEffect(() => {
+    setSize(window.innerWidth);
+    const isPaying = localStorage.getItem("__validity__");
+    if (isPaying) {
+      jwt.verify(
+        isPaying,
+        process.env.NEXT_PUBLIC_AUTH_KEY_VALID,
+        (err, dec) => {
+          if (err) {
+            setUserIcon({
+              icon: faCartShopping,
+              color: "#ffc439",
+            });
+          } else {
+            setUserIcon({
+              icon: faMedal,
+              color: "#f98433",
+            });
+          }
+        }
+      );
+    } else {
+      setUserIcon({
+        icon: faCartShopping,
+        color: "#ffc439",
+      });
+    }
+  }, [showPaypal]);
   return (
     <div
       onClick={() => {
-        return;
         const isPaying = localStorage.getItem("__validity__");
         if (isPaying) {
           jwt.verify(
