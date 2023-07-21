@@ -20,7 +20,7 @@ export const deleteTrash = async (messages, version) => {
     model: version.version,
     messages: messages,
     temperature: 0.7,
-    max_tokens: 1100,
+    max_tokens: 800,
   };
 
   try {

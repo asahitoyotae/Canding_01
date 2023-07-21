@@ -30,9 +30,6 @@ export default function Home() {
     ];
 
     const userDevice = navigator.platform;
-    if (desktopDevices.includes(userDevice)) {
-      localStorage.clear();
-    }
 
     const hacker = window.innerWidth;
 
@@ -76,7 +73,17 @@ export default function Home() {
           }
         );
       } else if (newUser) {
-        setShowPaypal(true);
+        jwt.verify(
+          newUser,
+          process.env.NEXT_PUBLIC_AUTH_KEY_VALID,
+          (error, decoded) => {
+            if (error) {
+              setShowPaypal(true);
+            } else if (decoded.numberOfRequest < 1) {
+              setShowPaypal(true);
+            }
+          }
+        );
       }
     }
 

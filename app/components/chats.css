@@ -183,12 +183,12 @@
   top: 0;
   overflow-y: auto;
   z-index: 14;
+  background-color: rgb(60, 60, 60);
 }
 .shopping_container {
   width: 100%;
   height: fit-content;
   min-height: 100vh;
-  background-color: rgb(60, 60, 60);
   padding: 30px 10px;
   display: flex;
   align-items: center;

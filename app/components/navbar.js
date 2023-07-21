@@ -18,6 +18,9 @@ import Image from "next/image";
 
 const Navbar = () => {
   const [hacker, setHacker] = useState(false);
+  const [active, setActive] = useState(false);
+  const [size, setSize] = useState();
+
   useEffect(() => {
     const desktopDevices = [
       "Win32",
@@ -38,11 +41,6 @@ const Navbar = () => {
       return;
     }
 
-    setSize(window.innerWidth);
-  }, []);
-  const [active, setActive] = useState(false);
-  const [size, setSize] = useState();
-  useEffect(() => {
     setSize(window.innerWidth);
   }, []);
 
