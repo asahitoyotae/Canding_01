@@ -134,7 +134,7 @@ const Search = ({ setResponse, setQuery }) => {
           onChange={inputChange}
           type="text"
           name="search"
-          placeholder="Aks me anything..."
+          placeholder="Ask me anything..."
           rows={1}
         />
         {!animate && (
