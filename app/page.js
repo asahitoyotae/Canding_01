@@ -10,6 +10,7 @@ import paymentStore from "./payment/storePayment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faCopy, faDiceD20 } from "@fortawesome/free-solid-svg-icons";
 import Alert from "./components/copyalert";
+import { Helmet } from "react-helmet";
 
 export default function Home() {
   const [response, setResponse] = useState({});
@@ -192,6 +193,12 @@ export default function Home() {
       />
       <Search setQuery={setQuery} setResponse={setResponse} />
       <Alert />
+      <Helmet>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+        />
+      </Helmet>
     </main>
   );
 }

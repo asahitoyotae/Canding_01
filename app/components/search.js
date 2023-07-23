@@ -20,6 +20,10 @@ const Search = ({ setResponse, setQuery }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (e.target.search.value.trim().length < 1 || animate) {
+      return;
+    }
+
     const checkingValidity = await new Promise((resolve, reject) => {
       const isPremium = localStorage.getItem("__validity__");
 
@@ -69,10 +73,6 @@ const Search = ({ setResponse, setQuery }) => {
 
     if (!checkingValidity) {
       return setShowPaypal(true);
-    }
-
-    if (e.target.search.value.trim().length < 1 || animate) {
-      return;
     }
 
     const userQuery = e.target.search.value;

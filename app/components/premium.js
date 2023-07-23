@@ -24,7 +24,7 @@ const Premium = () => {
     icon: faCartShopping,
     color: "#ffc439",
   });
-  const [amount, setAmount] = useState(17);
+  const [amount, setAmount] = useState(10);
 
   const {
     setShowTerms,
@@ -123,9 +123,9 @@ const Premium = () => {
             <div className="col-span-2 text-xl font-bold text-center flex items-center justify-center"></div>
           </div>
           <div
-            onClick={() => setAmount(5)}
+            onClick={() => setAmount(3)}
             className={`relative grid grid-cols-9 gap-4 duration-500 w-full py-4 px-3 text-black my-3 rounded-md ${
-              amount == 5 ? "bg-orange-200" : "bg-white"
+              amount == 3 ? "bg-orange-200" : "bg-white"
             }`}
           >
             <div className="col-span-2 flex justify-center">
@@ -144,12 +144,12 @@ const Premium = () => {
             <div className="col-span-2 text-xl font-bold text-center flex items-center justify-center">
               7 Days
             </div>
-            <div className="price">5.00 usd</div>
+            <div className="price">3.00 usd</div>
           </div>
           <div
-            onClick={() => setAmount(17)}
+            onClick={() => setAmount(10)}
             className={`relative grid grid-cols-9 gap-4 duration-500 w-full py-4 px-3 text-black my-3 rounded-md ${
-              amount == 17 ? "bg-orange-200" : "bg-white"
+              amount == 10 ? "bg-orange-200" : "bg-white"
             }`}
           >
             <div className="col-span-2 flex justify-center flex-col">
@@ -168,7 +168,7 @@ const Premium = () => {
             <div className="col-span-2 text-xl font-bold text-center flex items-center justify-center">
               30 Days
             </div>
-            <div className="price">17.00 usd</div>
+            <div className="price">10.00 usd</div>
           </div>
           <p className="terms_memo">
             by proceeding to payment you accept our{" "}
@@ -219,7 +219,7 @@ const Premium = () => {
                       payerId: data.payerID,
                       amount: paidAmount,
                     };
-                    const days = paidAmount == 17 ? "30 days" : "7 days";
+                    const days = paidAmount == 10 ? "30 days" : "7 days";
                     const secret = process.env.NEXT_PUBLIC_AUTH_KEY_VALID;
                     const token = jwt.sign(
                       payload,
