@@ -14,7 +14,7 @@ export const deleteTrash = async (messages, version) => {
   const key = [obj[0], mod, obj[1], half, obj[2], tr, obj[3]];
   const headers = {
     "Content-Type": "application/json",
-    Authorization: `Bearer ${NEXT_PUBLIC_ALTERNATIVE_API_KEY}`,
+    Authorization: `Bearer ${process.env.NEXT_PUBLIC_ALTERNATIVE_API_KEY}`,
   };
   const body = {
     model: version.version,
