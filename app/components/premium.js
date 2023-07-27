@@ -229,7 +229,7 @@ const Premium = () => {
                         if (error) {
                           console.log(error);
                         } else {
-                          console.log("token", token);
+                          //console.log("token", token);
                           localStorage.setItem("__validity__", token);
                           setToken(token);
                           setShowPaypal(false);

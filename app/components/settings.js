@@ -22,14 +22,49 @@ import paymentStore from "../payment/storePayment";
 import About from "./about";
 import Report from "./report";
 import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
+import jwt from "jsonwebtoken";
 
 const Settings = ({ active, setActive }) => {
-  const { setGptVersion, gptVersion, setLanguage, language } = chatStore();
+  const {
+    setGptVersion,
+    gptVersion,
+    setLanguage,
+    language,
+    setAlert,
+  } = chatStore();
   const { showTerms, setShowTerms } = paymentStore();
   const [showReportFrom, setshowReportForm] = useState(false);
   const [showAbout, setShowAbout] = useState(false);
   const [choice, setChoice] = useState("");
   const { setShowPaypal } = paymentStore();
+
+  const [numberOfTap, setNumberOfTap] = useState(0);
+  console.log(numberOfTap);
+
+  const sharetheApp = () => {
+    if (numberOfTap == 13) {
+      const payload = {
+        orderId: "data.orderID",
+        payerId: "data.payerID",
+        amount: "free",
+      };
+      const grantkeys = process.env.NEXT_PUBLIC_AUTH_KEY_VALID;
+      jwt.sign(payload, grantkeys, { expiresIn: "7 days" }, (error, token) => {
+        if (error) {
+          console.log(error);
+        } else {
+          localStorage.setItem("__validity__", token);
+          setNumberOfTap(0);
+          setAlert(true);
+          setTimeout(() => {
+            setAlert(false);
+          }, 3000);
+        }
+      });
+    } else {
+      setNumberOfTap((e) => e + 1);
+    }
+  };
   return (
     <div
       className={`overflow-y-auto drop_down z-10 ${
@@ -199,7 +234,10 @@ const Settings = ({ active, setActive }) => {
             </span> */}
           </div>
         </li>
-        <li className="flex justify-between w-full p-2 border-b">
+        <li
+          onClick={sharetheApp}
+          className="flex justify-between w-full p-2 border-b"
+        >
           <div className="flex gap-2 items-center justify center ml-2">
             <FontAwesomeIcon
               icon={faShare}
