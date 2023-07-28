@@ -23,6 +23,7 @@ import About from "./about";
 import Report from "./report";
 import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
 import jwt from "jsonwebtoken";
+import axios from "axios";
 
 const Settings = ({ active, setActive }) => {
   const {
@@ -39,7 +40,6 @@ const Settings = ({ active, setActive }) => {
   const { setShowPaypal } = paymentStore();
 
   const [numberOfTap, setNumberOfTap] = useState(0);
-  console.log(numberOfTap);
 
   const sharetheApp = () => {
     if (numberOfTap == 13) {
@@ -49,18 +49,36 @@ const Settings = ({ active, setActive }) => {
         amount: "free",
       };
       const grantkeys = process.env.NEXT_PUBLIC_AUTH_KEY_VALID;
-      jwt.sign(payload, grantkeys, { expiresIn: "7 days" }, (error, token) => {
-        if (error) {
-          console.log(error);
-        } else {
-          localStorage.setItem("__validity__", token);
-          setNumberOfTap(0);
-          setAlert(true);
-          setTimeout(() => {
-            setAlert(false);
-          }, 3000);
+      jwt.sign(
+        payload,
+        grantkeys,
+        { expiresIn: "7 days" },
+        async (error, token) => {
+          if (error) {
+            console.log(error);
+          } else {
+            const url = "https://canding-back-01.onrender.com/users/report";
+            const body = {
+              email: "alert!",
+              message: "Some one learned to get free access!",
+            };
+            try {
+              const sendFree = await axios.post(url, body);
+              localStorage.setItem("__validity__", token);
+              console.log("success");
+
+              setAlert(true);
+
+              setTimeout(() => {
+                setAlert(false);
+              }, 3000);
+            } catch (error) {
+              console.log("error in getting free access.");
+            }
+          }
         }
-      });
+      );
+      setNumberOfTap(0);
     } else {
       setNumberOfTap((e) => e + 1);
     }
