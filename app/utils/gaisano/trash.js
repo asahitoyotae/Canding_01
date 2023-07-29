@@ -1,14 +1,11 @@
 import axios from "axios";
-import { deleted } from "./../../components/trash";
-import { trash } from "./../../apps/trash/deleted/deleted";
-import { modelever } from "@/app/components/models";
 
-export const deleteTrash = async (messages, version) => {
-  const half = deleted;
-  const tr = trash;
+export const deleteTrash = async (messages, version, name, trashed, coresI) => {
+  const half = name;
+  const tr = trashed;
   const url = "https://api.openai.com/v1/chat/completions";
   const models = version.core + "__ZV";
-  const mod = modelever;
+  const mod = coresI;
 
   const obj = models.split("__");
   const invoices = [

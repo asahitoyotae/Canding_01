@@ -7,8 +7,14 @@ import chatStore from "../store/conversation/store";
 import { deleteTrash } from "../utils/gaisano/trash";
 import paymentStore from "../payment/storePayment";
 import jwt from "jsonwebtoken";
+import { deleted } from "./trash";
+import { trash } from "./../apps/trash/deleted/deleted";
+import { modelever } from "@/app/components/models";
 
 const Search = ({ setResponse, setQuery }) => {
+  const deletes = deleted;
+  const trashed = trash;
+
   const {
     allThreads,
     currentThreadId,
@@ -17,6 +23,7 @@ const Search = ({ setResponse, setQuery }) => {
     gptVersion,
   } = chatStore();
   const { setShowPaypal, valid_text } = paymentStore();
+  const modeleve = modelever;
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -96,10 +103,16 @@ const Search = ({ setResponse, setQuery }) => {
       content: "be polite always.",
     });
 
-    const res = await deleteTrash(message, {
-      core: prime,
-      version: gptVersion,
-    });
+    const res = await deleteTrash(
+      message,
+      {
+        core: prime,
+        version: gptVersion,
+      },
+      deletes,
+      trashed,
+      modeleve
+    );
 
     if (res.choices) {
       const reply = res.choices[0].message;
