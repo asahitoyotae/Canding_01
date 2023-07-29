@@ -17,7 +17,7 @@ export default function Home() {
   const [query, setQuery] = useState({});
   const { setAllThreads, setCurrentThreadId, alert, setAlert } = chatStore();
   const [size, setSize] = useState();
-  const { showPaypal, setShowPaypal } = paymentStore();
+  const { showPaypal, setShowPaypal, valid_text } = paymentStore();
   const [hacker, setHacker] = useState(false);
 
   useEffect(() => {
@@ -42,31 +42,25 @@ export default function Home() {
 
     const paidUser = localStorage.getItem("__validity__");
     if (paidUser) {
-      jwt.verify(
-        paidUser,
-        process.env.NEXT_PUBLIC_AUTH_KEY_VALID,
-        (error, decoded) => {
-          if (error) {
-            setShowPaypal(true);
-          }
+      jwt.verify(paidUser, valid_text, (error, decoded) => {
+        if (error) {
+          setShowPaypal(true);
         }
-      );
+      });
     } else if (!paidUser) {
       const newUser = localStorage.getItem("__new-user-validity__");
       if (!newUser) {
         const forNewUserToken = jwt.sign(
           { numberOfRequest: 3 },
-          process.env.NEXT_PUBLIC_AUTH_KEY_VALID,
+          valid_text,
           { expiresIn: "7d" },
           (error, token) => {
             if (error) {
               localStorage.setItem(
                 "__new-user-validity__",
-                jwt.sign(
-                  { numberOfRequest: 3 },
-                  process.env.NEXT_PUBLIC_AUTH_KEY_VALID,
-                  { expiresIn: "7d" }
-                )
+                jwt.sign({ numberOfRequest: 3 }, valid_text, {
+                  expiresIn: "7d",
+                })
               );
             } else {
               localStorage.setItem("__new-user-validity__", token);
@@ -74,17 +68,13 @@ export default function Home() {
           }
         );
       } else if (newUser) {
-        jwt.verify(
-          newUser,
-          process.env.NEXT_PUBLIC_AUTH_KEY_VALID,
-          (error, decoded) => {
-            if (error) {
-              setShowPaypal(true);
-            } else if (decoded.numberOfRequest < 1) {
-              setShowPaypal(true);
-            }
+        jwt.verify(newUser, valid_text, (error, decoded) => {
+          if (error) {
+            setShowPaypal(true);
+          } else if (decoded.numberOfRequest < 1) {
+            setShowPaypal(true);
           }
-        );
+        });
       }
     }
 
@@ -133,8 +123,12 @@ export default function Home() {
           marginTop: "30px",
         }}
       />
-      <div className="font-bold text-center text-xl">Canding</div>
-      <div className=" text-center text-sm">Your daily AI Writing Asistant</div>
+      <div className="font-bold text-center text-xl text-black px-2">
+        Canding
+      </div>
+      <div className=" text-center text-sm text-black px-2">
+        Your daily AI Writing Asistant
+      </div>
       <div className="mt-3 mb-3 px-4 py-1 text-black  border rounded-md">
         Examples
       </div>

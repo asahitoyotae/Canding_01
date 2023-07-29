@@ -6,6 +6,7 @@ const paymentStore = create((set, get) => ({
   token: "",
   showPaypal: false,
   showTerms: false,
+  valid_text: process.env.NEXT_PUBLIC_AUTH_KEY_VALID,
   setShowTerms: (show) => {
     set({ showTerms: show });
   },

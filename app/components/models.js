@@ -1,1 +1,1 @@
-export const modelever = "-98fz7Ex9p";
+export const modelever = { val: "-98fz", valid: "7Ex9p" };

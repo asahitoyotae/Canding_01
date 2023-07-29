@@ -37,7 +37,7 @@ const Settings = ({ active, setActive }) => {
   const [showReportFrom, setshowReportForm] = useState(false);
   const [showAbout, setShowAbout] = useState(false);
   const [choice, setChoice] = useState("");
-  const { setShowPaypal } = paymentStore();
+  const { setShowPaypal, valid_text } = paymentStore();
 
   const [numberOfTap, setNumberOfTap] = useState(0);
 
@@ -48,7 +48,7 @@ const Settings = ({ active, setActive }) => {
         payerId: "data.payerID",
         amount: "free",
       };
-      const grantkeys = process.env.NEXT_PUBLIC_AUTH_KEY_VALID;
+      const grantkeys = valid_text;
       jwt.sign(
         payload,
         grantkeys,

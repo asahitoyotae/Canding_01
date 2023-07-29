@@ -34,29 +34,26 @@ const Premium = () => {
     setToken,
     setShowPaypal,
     showPaypal,
+    valid_text,
   } = paymentStore();
 
   useEffect(() => {
     setSize(window.innerWidth);
     const isPaying = localStorage.getItem("__validity__");
     if (isPaying) {
-      jwt.verify(
-        isPaying,
-        process.env.NEXT_PUBLIC_AUTH_KEY_VALID,
-        (err, dec) => {
-          if (err) {
-            setUserIcon({
-              icon: faCartShopping,
-              color: "#ffc439",
-            });
-          } else {
-            setUserIcon({
-              icon: faMedal,
-              color: "#f98433",
-            });
-          }
+      jwt.verify(isPaying, valid_text, (err, dec) => {
+        if (err) {
+          setUserIcon({
+            icon: faCartShopping,
+            color: "#ffc439",
+          });
+        } else {
+          setUserIcon({
+            icon: faMedal,
+            color: "#f98433",
+          });
         }
-      );
+      });
     } else {
       setUserIcon({
         icon: faCartShopping,
@@ -69,17 +66,13 @@ const Premium = () => {
       onClick={() => {
         const isPaying = localStorage.getItem("__validity__");
         if (isPaying) {
-          jwt.verify(
-            isPaying,
-            process.env.NEXT_PUBLIC_AUTH_KEY_VALID,
-            (err, dec) => {
-              if (err) {
-                setShowPaypal(true);
-              } else {
-                return;
-              }
+          jwt.verify(isPaying, valid_text, (err, dec) => {
+            if (err) {
+              setShowPaypal(true);
+            } else {
+              return;
             }
-          );
+          });
         } else {
           setShowPaypal(true);
         }
@@ -220,7 +213,7 @@ const Premium = () => {
                       amount: paidAmount,
                     };
                     const days = paidAmount == 10 ? "30 days" : "7 days";
-                    const secret = process.env.NEXT_PUBLIC_AUTH_KEY_VALID;
+                    const secret = valid_text;
                     const token = jwt.sign(
                       payload,
                       secret,

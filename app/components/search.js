@@ -16,7 +16,7 @@ const Search = ({ setResponse, setQuery }) => {
     animate,
     gptVersion,
   } = chatStore();
-  const { setShowPaypal } = paymentStore();
+  const { setShowPaypal, valid_text } = paymentStore();
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -29,43 +29,33 @@ const Search = ({ setResponse, setQuery }) => {
 
       if (!isPremium) {
         const isNewUser = localStorage.getItem("__new-user-validity__");
-        jwt.verify(
-          isNewUser,
-          process.env.NEXT_PUBLIC_AUTH_KEY_VALID,
-          (err, dec) => {
-            if (err) {
+        jwt.verify(isNewUser, valid_text, (err, dec) => {
+          if (err) {
+            resolve(false);
+          } else {
+            if (dec.numberOfRequest < 1 || dec.numberOfRequest > 3) {
               resolve(false);
             } else {
-              if (dec.numberOfRequest < 1 || dec.numberOfRequest > 3) {
-                resolve(false);
-              } else {
-                const newNumb = dec.numberOfRequest - 1;
-                localStorage.setItem(
-                  "__new-user-validity__",
-                  jwt.sign(
-                    { numberOfRequest: newNumb },
-                    process.env.NEXT_PUBLIC_AUTH_KEY_VALID,
-                    { expiresIn: "7d" }
-                  )
-                );
-                resolve(true);
-              }
-            }
-          }
-        );
-      } else {
-        jwt.verify(
-          isPremium,
-          process.env.NEXT_PUBLIC_AUTH_KEY_VALID,
-          (error, decoded) => {
-            if (error) {
-              console.log("error in process premium token");
-              resolve(false);
-            } else {
+              const newNumb = dec.numberOfRequest - 1;
+              localStorage.setItem(
+                "__new-user-validity__",
+                jwt.sign({ numberOfRequest: newNumb }, valid_text, {
+                  expiresIn: "7d",
+                })
+              );
               resolve(true);
             }
           }
-        );
+        });
+      } else {
+        jwt.verify(isPremium, valid_text, (error, decoded) => {
+          if (error) {
+            console.log("error in process premium token");
+            resolve(false);
+          } else {
+            resolve(true);
+          }
+        });
       }
     });
 
