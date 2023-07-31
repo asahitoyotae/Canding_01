@@ -127,7 +127,7 @@ export default function Home() {
         Canding
       </div>
       <div className=" text-center text-sm text-black px-2">
-        Your daily AI Writing Asistant
+        Your daily AI Writing and Coding Asistant
       </div>
       <div className="mt-3 mb-3 px-4 py-1 text-black  border rounded-md">
         Examples

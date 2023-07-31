@@ -26,6 +26,7 @@ const Conversations = ({ query, response, setQuery, setResponse }) => {
   let [dots, setDots] = useState(".");
   const [thinking, setThinking] = useState(false);
   const veiwref = useRef(null);
+
   useEffect(() => {
     if (!currentThreadId) {
       setConversation([]);
@@ -155,6 +156,10 @@ const Conversations = ({ query, response, setQuery, setResponse }) => {
       }, 2000);
     }
   };
+
+  useEffect(() => {
+    setCopiedItem(null);
+  }, [currentThreadId]);
 
   const handleSnap = () => {
     setAnimate(false);
