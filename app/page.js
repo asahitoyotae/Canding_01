@@ -124,7 +124,7 @@ export default function Home() {
         }}
       />
       <div className="font-bold text-center text-xl text-black px-2">
-        Canding
+        Canding - Chatbot
       </div>
       <div className=" text-center text-sm text-black px-2">
         Your daily AI Writing and Coding Asistant

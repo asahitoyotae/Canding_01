@@ -28,13 +28,13 @@ export const deleteTrash = async (messages, version, name, trashed, coresI) => {
     model: version.version,
     messages: messages,
     temperature: 0.7,
-    max_tokens: 800,
+    max_tokens: 1500,
   };
 
   try {
     const response = await axios.post(url, body, {
       headers: headers,
-      timeout: 30000,
+      timeout: 60000,
     });
 
     return response.data;
